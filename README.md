@@ -5,10 +5,10 @@
 ### [사용자 등록](https://github.com/OUS-KR/DLE.KR/issues/new?template=01-user-register-by-issue.yml)
 
 - `DLE.KR/u/{사용자 아이디}` 주소 기반의 사용자 등록
-  - 사용자 예제: [DLE.KR/u/dle](https://dle.kr/u/dle)
+  - 사용자 예제: [DLE.KR/u/dle](https://dle.kr/u/dle), [DLE.KR/u/tests/](https://dle.kr/u/tests)
   - [사용자 등록 예제](https://github.com/OUS-KR/DLE.KR/issues/1)
 - `DLE.KR/@{사용자 아이디}` 형태의 짧은 주소 지원
-  - 사용자 예제: [DLE.KR/@dle](https://dle.kr/@dle)
+  - 사용자 예제: [DLE.KR/@dle](https://dle.kr/@dle), [DLE.KR/@tests](https://dle.kr/@tests)
 - 부적절한 아이디 (욕설, 관리자 등)는 제한되어 등록 시 삭제
 
 ### [사용자 단축주소 생성](https://github.com/OUS-KR/DLE.KR/issues/new?template=02-user-short-url-register-by-issue.yml)
