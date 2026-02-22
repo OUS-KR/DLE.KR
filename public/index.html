@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLE — dle.kr · The Suffix of Warmth, Grip & Gentle Action</title>
+  <meta name="description" content="dle.kr — The definitive home of the -dle suffix. From handle to cuddle, candle to riddle: the voiced Germanic cluster that shapes English's most intimate words." />
+  <meta property="og:title" content="DLE — dle.kr" />
+  <meta property="og:description" content="Explore the -dle suffix: frequentative verb, instrument noun, and tender diminutive — a voiced counterpart to -tle with deep Proto-Germanic roots." />
+  <meta property="og:url" content="https://dle.kr" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-tallow-brown: #4a3020;
+      --color-ember-rose:   #c84858;
+      --color-candle-gold:  #d4a030;
+      --color-warm-cream:   #f5ede0;
+      --color-void:         #070404;
+
+      --font-display: 'Cinzel', serif;
+      --font-serif:   'Libre Baskerville', serif;
+      --font-body:    'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-void);
+      color: var(--color-warm-cream);
+      overflow-x: hidden;
+    }
+
+    #bg-canvas {
+      position: fixed; inset: 0;
+      z-index: 0; pointer-events: none;
+    }
+
+    section, header, footer { position: relative; z-index: 1; }
+
+    .fade-up {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .font-display { font-family: var(--font-display); }
+    .font-serif   { font-family: var(--font-serif); }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(7,4,4,0.80);
+      border-bottom: 1px solid rgba(212,160,48,0.22);
+    }
+
+    /* ── Hero bg text ── */
+    .hero-bg-text {
+      font-family: var(--font-display);
+      font-size: clamp(10rem, 28vw, 26rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.85;
+      background: linear-gradient(145deg,
+        rgba(200,72,88,0.15) 0%,
+        rgba(212,160,48,0.10) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      user-select: none; pointer-events: none;
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+    }
+
+    /* ── Stat Cards ── */
+    .stat-card {
+      background: rgba(200,72,88,0.08);
+      border: 1px solid rgba(200,72,88,0.28);
+      border-radius: 1rem;
+      padding: 1.75rem 1.5rem;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(200,72,88,0.60);
+    }
+
+    /* ── Origin Nodes ── */
+    .origin-node {
+      background: rgba(74,48,32,0.60);
+      border: 1px solid rgba(212,160,48,0.38);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.2rem;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+    .origin-arrow {
+      color: rgba(212,160,48,0.55);
+      font-size: 1.4rem;
+      align-self: center;
+    }
+
+    /* ── Cluster Cards ── */
+    .cluster-card {
+      background: linear-gradient(135deg,
+        rgba(74,48,32,0.50), rgba(7,4,4,0.72));
+      border: 1px solid rgba(212,160,48,0.22);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .cluster-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212,160,48,0.55);
+      box-shadow: 0 12px 36px rgba(212,160,48,0.10);
+    }
+
+    /* ── Letter Tiles ── */
+    .letter-tile {
+      background: rgba(200,72,88,0.10);
+      border: 1px solid rgba(200,72,88,0.30);
+      border-radius: 1rem;
+      padding: 2.5rem 1rem 2rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .letter-tile:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(200,72,88,0.16);
+    }
+
+    /* ── Feature Cards ── */
+    .feature-card {
+      background: rgba(74,48,32,0.32);
+      border: 1px solid rgba(212,160,48,0.20);
+      border-radius: 1rem;
+      padding: 1.75rem 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .feature-card:hover { border-color: rgba(212,160,48,0.50); }
+
+    /* ── Timeline ── */
+    .timeline-item {
+      position: relative;
+      padding-left: 2.5rem;
+      border-left: 2px solid rgba(200,72,88,0.30);
+      padding-bottom: 2.5rem;
+    }
+    .timeline-item:last-child { border-color: transparent; padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -7px; top: 4px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--color-ember-rose);
+      border: 2px solid var(--color-void);
+    }
+
+    /* ── Word Pills ── */
+    .word-pill {
+      display: inline-block;
+      background: rgba(200,72,88,0.10);
+      border: 1px solid rgba(200,72,88,0.30);
+      border-radius: 9999px;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.9rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s;
+      cursor: default;
+    }
+    .word-pill:hover {
+      background: rgba(200,72,88,0.28);
+      border-color: rgba(200,72,88,0.60);
+      transform: scale(1.06);
+    }
+
+    /* ── Codex Box ── */
+    .codex-box {
+      background: rgba(74,48,32,0.55);
+      border: 1px solid rgba(212,160,48,0.42);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+    }
+    .codex-row {
+      display: flex; gap: 1rem;
+      border-bottom: 1px solid rgba(212,160,48,0.13);
+      padding: 0.75rem 0;
+      align-items: flex-start;
+    }
+    .codex-row:last-child { border-bottom: none; }
+    .codex-key {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.10em;
+      color: rgba(212,160,48,0.80);
+      min-width: 9rem;
+      padding-top: 0.1rem;
+    }
+    .codex-val { font-size: 0.92rem; line-height: 1.6; }
+
+    /* ── Series Cards ── */
+    .series-card {
+      background: rgba(74,48,32,0.28);
+      border: 1px solid rgba(212,160,48,0.18);
+      border-radius: 1rem;
+      padding: 1.1rem 0.8rem;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.3rem;
+    }
+    .series-card:hover {
+      background: rgba(200,72,88,0.18);
+      border-color: rgba(200,72,88,0.50);
+      transform: translateY(-3px);
+    }
+    .series-card.active {
+      background: rgba(200,72,88,0.22);
+      border-color: rgba(200,72,88,0.60);
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent, rgba(212,160,48,0.35), transparent);
+      margin: 0 auto;
+      max-width: 60rem;
+    }
+
+    /* ── Voiced Badge ── */
+    .voiced-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(200,72,88,0.14);
+      border: 1px solid rgba(200,72,88,0.38);
+      border-radius: 9999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.75rem;
+      font-family: var(--font-display);
+      letter-spacing: 0.08em;
+      color: rgba(200,72,88,0.90);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ CANVAS ════════════════════ -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ════════════════════ HEADER ════════════════════ -->
+<header class="site-header">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="https://dle.kr" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center border"
+           style="background:rgba(200,72,88,0.16);border-color:rgba(200,72,88,0.40);">
+        <span class="font-display text-sm font-bold" style="color:#c84858;">DLE</span>
+      </div>
+      <span class="font-display text-lg font-semibold tracking-wider" style="color:#f5ede0;">dle.kr</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm" style="color:rgba(245,237,224,0.60);">
+      <a href="#origin"   class="hover:text-[#c84858] transition-colors">Origin</a>
+      <a href="#clusters" class="hover:text-[#c84858] transition-colors">Clusters</a>
+      <a href="#words"    class="hover:text-[#c84858] transition-colors">Words</a>
+      <a href="#codex"    class="hover:text-[#c84858] transition-colors">Codex</a>
+      <a href="#series"   class="hover:text-[#c84858] transition-colors">Series</a>
+    </nav>
+    <a href="mailto:hello@dle.kr"
+       class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-all"
+       style="border-color:rgba(200,72,88,0.40);color:#c84858;background:rgba(200,72,88,0.10);"
+       onmouseover="this.style.background='rgba(200,72,88,0.22)'"
+       onmouseout="this.style.background='rgba(200,72,88,0.10)'">
+      Contact
+    </a>
+  </div>
+</header>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-32">
+  <div class="hero-bg-text" aria-hidden="true">DLE</div>
+
+  <div class="relative z-10 max-w-4xl mx-auto fade-up">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-medium mb-8 font-display tracking-widest"
+         style="border-color:rgba(212,160,48,0.38);color:#d4a030;background:rgba(212,160,48,0.08);">
+      SUFFIX DOMAIN SERIES
+    </div>
+
+    <h1 class="font-display font-black mb-6"
+        style="font-size:clamp(3.5rem,10vw,7.5rem);letter-spacing:-0.03em;
+               background:linear-gradient(135deg,#f5ede0 30%,#c84858 100%);
+               -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+               background-clip:text;line-height:0.9;">
+      ‑DLE
+    </h1>
+
+    <p class="font-serif italic mb-4"
+       style="font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(245,237,224,0.82);">
+      The Suffix of Warmth, Grip, Gentle Motion &amp; Voiced Germanic Spirit
+    </p>
+    <p style="color:rgba(245,237,224,0.52);max-width:44rem;margin:0 auto 3rem;
+              line-height:1.85;font-size:0.97rem;">
+      From <em>handle</em> to <em>cuddle</em>, <em>candle</em> to <em>riddle</em> —
+      the voiced counterpart to ‑tle, the ‑dle cluster carries the warmth of the hearth,
+      the grip of the hand, and the intimacy of small, tender, repeated actions.
+      One of the most emotionally resonant suffix-forms in the English lexicon.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#origin"
+         class="px-7 py-3 rounded-xl font-semibold text-sm transition-all"
+         style="background:rgba(200,72,88,0.85);color:#f5ede0;"
+         onmouseover="this.style.background='rgba(200,72,88,1)'"
+         onmouseout="this.style.background='rgba(200,72,88,0.85)'">
+        Explore Origin
+      </a>
+      <a href="#words"
+         class="px-7 py-3 rounded-xl font-semibold text-sm border transition-all"
+         style="border-color:rgba(200,72,88,0.42);color:#c84858;"
+         onmouseover="this.style.background='rgba(200,72,88,0.12)'"
+         onmouseout="this.style.background='transparent'">
+        Browse Words
+      </a>
+    </div>
+  </div>
+
+  <!-- Voiced badge -->
+  <div class="absolute bottom-24 left-1/2 -translate-x-1/2 fade-up">
+    <span class="voiced-badge">
+      <span style="font-size:1rem;">🔊</span> VOICED /d/ — THE WARM TWIN OF ‑TLE
+    </span>
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+       style="color:rgba(200,72,88,0.45);">
+    <span class="text-xs font-display tracking-widest">SCROLL</span>
+    <div class="w-px h-10 animate-bounce" style="background:rgba(200,72,88,0.38);"></div>
+  </div>
+</section>
+
+<!-- ════════════════════ STATS ════════════════════ -->
+<section class="py-10 px-6">
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 fade-up">
+
+    <div class="stat-card text-center">
+      <p class="font-display text-4xl font-bold mb-1" style="color:#c84858;">180<span style="color:#d4a030;">+</span></p>
+      <p class="text-xs tracking-widest font-display" style="color:rgba(245,237,224,0.50);">‑DLE WORDS</p>
+    </div>
+    <div class="stat-card text-center">
+      <p class="font-display text-4xl font-bold mb-1" style="color:#d4a030;">3</p>
+      <p class="text-xs tracking-widest font-display" style="color:rgba(245,237,224,0.50);">WORD CLUSTERS</p>
+    </div>
+    <div class="stat-card text-center">
+      <p class="font-display text-4xl font-bold mb-1" style="color:#c84858;">/d/</p>
+      <p class="text-xs tracking-widest font-display" style="color:rgba(245,237,224,0.50);">VOICED STOP</p>
+    </div>
+    <div class="stat-card text-center">
+      <p class="font-display text-4xl font-bold mb-1" style="color:#d4a030;">OE</p>
+      <p class="text-xs tracking-widest font-display" style="color:rgba(245,237,224,0.50);">OLD ENGLISH CORE</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider my-4"></div>
+
+<!-- ════════════════════ VOICED TWIN ════════════════════ -->
+<section class="py-20 px-6">
+  <div class="max-w-4xl mx-auto fade-up">
+    <div class="text-center mb-10">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">PHONOLOGICAL IDENTITY</p>
+      <h2 class="font-display font-bold mb-5"
+          style="font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;">
+        The Voiced Twin
+      </h2>
+    </div>
+
+    <!-- TLE vs DLE comparison -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="rounded-xl p-6 border text-center"
+           style="background:rgba(74,48,32,0.25);border-color:rgba(212,160,48,0.22);">
+        <p class="font-display text-xs tracking-widest mb-3" style="color:rgba(245,237,224,0.40);">
+          VOICELESS SIBLING
+        </p>
+        <p class="font-display font-bold mb-2" style="font-size:2.8rem;color:rgba(245,237,224,0.35);">‑TLE</p>
+        <p class="text-sm" style="color:rgba(245,237,224,0.40);line-height:1.7;">
+          /t/ — voiceless alveolar stop<br/>
+          Sharp, percussive, precise<br/>
+          <em style="opacity:0.60;">hustle · whistle · brittle</em>
+        </p>
+      </div>
+
+      <div class="rounded-xl p-6 border text-center"
+           style="background:rgba(200,72,88,0.12);border-color:rgba(200,72,88,0.42);">
+        <p class="font-display text-xs tracking-widest mb-3" style="color:#d4a030;">
+          VOICED SELF
+        </p>
+        <p class="font-display font-bold mb-2" style="font-size:2.8rem;color:#c84858;">‑DLE</p>
+        <p class="text-sm" style="color:rgba(245,237,224,0.72);line-height:1.7;">
+          /d/ — voiced alveolar stop<br/>
+          Warm, resonant, intimate<br/>
+          <em>cuddle · candle · riddle</em>
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-8 text-sm text-center" style="color:rgba(245,237,224,0.52);line-height:1.8;max-width:40rem;margin:2rem auto 0;">
+      In Proto-Germanic, ‑tle and ‑dle descend from adjacent voicing variants.
+      The voiced /d/ gives ‑dle words a perceptibly softer, warmer sound — a phonaesthetic
+      quality that correlates with the semantic tenderness of many ‑dle words:
+      <em>cradle, cuddle, coddle, dandle, fondle.</em>
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ ORIGIN ════════════════════ -->
+<section id="origin" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-16 fade-up">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">ETYMOLOGY</p>
+      <h2 class="font-display font-bold mb-5"
+          style="font-size:clamp(2rem,5vw,3.2rem);color:#f5ede0;">
+        Three Streams, One Voiced Cluster
+      </h2>
+      <p class="max-w-2xl mx-auto" style="color:rgba(245,237,224,0.58);line-height:1.8;">
+        Like its voiceless twin ‑tle, the ‑dle ending is a convergence of three distinct
+        historical processes — frequentative verb formation, instrument-noun formation, and
+        loanword assimilation — all funnelled into the same voiced cluster over centuries.
+      </p>
+    </div>
+
+    <!-- Stream I -->
+    <div class="mb-14 fade-up">
+      <h3 class="font-display text-sm tracking-widest mb-6" style="color:#d4a030;">
+        STREAM I — FREQUENTATIVE / ITERATIVE VERBS
+      </h3>
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="origin-node">Proto-Germanic<br/><span style="color:#d4a030;">*‑dalōną / *‑dilōną</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Old English<br/><span style="color:#c84858;">*‑dlian / ‑dlan</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Middle English<br/><span style="color:#c84858;">‑dlen / ‑dle</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Modern English<br/><span style="color:#f5ede0;">‑dle (verbs)</span></div>
+      </div>
+      <p class="mt-4 text-sm" style="color:rgba(245,237,224,0.55);line-height:1.8;max-width:52rem;">
+        The voiced frequentative ‑dle mirrors its twin ‑tle, but carries warmer, more bodily
+        connotations. Verbs like <em>cuddle</em>, <em>dawdle</em>, <em>waddle</em>, <em>paddle</em>,
+        <em>straddle</em>, and <em>muddle</em> encode repeated gentle motion — body-close,
+        low-speed, often intimate actions rooted in Proto-Germanic voiced iterative morphology.
+      </p>
+    </div>
+
+    <!-- Stream II -->
+    <div class="mb-14 fade-up">
+      <h3 class="font-display text-sm tracking-widest mb-6" style="color:#c84858;">
+        STREAM II — INSTRUMENT &amp; TOOL NOUNS
+      </h3>
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="origin-node">Proto-Germanic<br/><span style="color:#d4a030;">*‑þlaz → *‑dlaz</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Old English<br/><span style="color:#c84858;">‑del / ‑dol</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Vowel reduction<br/><span style="color:#c84858;">unstressed ‑el</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Modern English<br/><span style="color:#f5ede0;">‑dle (nouns)</span></div>
+      </div>
+      <p class="mt-4 text-sm" style="color:rgba(245,237,224,0.55);line-height:1.8;max-width:52rem;">
+        The OE formative ‑del (instrument suffix) gives us <em>handle</em> (OE <em>handle</em>,
+        from <em>hand</em> + ‑el), <em>spindle</em> (OE <em>spinel</em>), and <em>needle</em>
+        (OE <em>nǣdl</em>, from Proto-Germanic *<em>nēþlō</em>). These are concrete tool-nouns:
+        the suffix encodes "the thing by which one [verb]s" — the instrument of a physical act.
+      </p>
+    </div>
+
+    <!-- Stream III -->
+    <div class="fade-up">
+      <h3 class="font-display text-sm tracking-widest mb-6" style="color:rgba(212,160,48,0.65);">
+        STREAM III — LATIN / FRENCH LOANWORD ASSIMILATION
+      </h3>
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="origin-node">Latin<br/><span style="color:#d4a030;">‑dula / ‑dulum</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Old French<br/><span style="color:#c84858;">‑del / ‑dle</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Middle English<br/><span style="color:#c84858;">Norman assimilation</span></div>
+        <div class="origin-arrow">→</div>
+        <div class="origin-node">Modern English<br/><span style="color:#f5ede0;">candle, riddle…</span></div>
+      </div>
+      <p class="mt-4 text-sm" style="color:rgba(245,237,224,0.55);line-height:1.8;max-width:52rem;">
+        Latin loanwords such as <em>candle</em> (Latin <em>candela</em>) and <em>bundle</em>
+        (Middle Low German <em>bundel</em>) entered English with endings that aligned naturally
+        with the existing ‑dle phoneme cluster, reinforcing the pattern. Post-Conquest Norman French
+        further cemented the ‑dle spelling as the standard form for such endings.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ CLUSTERS ════════════════════ -->
+<section id="clusters" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-14 fade-up">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">WORD CLUSTERS</p>
+      <h2 class="font-display font-bold mb-5"
+          style="font-size:clamp(2rem,5vw,3.2rem);color:#f5ede0;">
+        Three Functional Clusters
+      </h2>
+      <p class="max-w-xl mx-auto text-sm" style="color:rgba(245,237,224,0.52);line-height:1.8;">
+        ‑dle words fall into three semantic-morphological clusters, each with its own
+        heritage and emotional register — from intimate bodily verbs to ancient tool-names.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 fade-up">
+
+      <!-- Intimate Motion Verbs -->
+      <div class="cluster-card">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+             style="background:rgba(200,72,88,0.18);border:1px solid rgba(200,72,88,0.38);">
+          <span class="font-display text-base font-bold" style="color:#c84858;">IV</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2" style="color:#f5ede0;">
+          Intimate Motion Verbs
+        </h3>
+        <p class="text-xs tracking-widest mb-4 font-display" style="color:#d4a030;">
+          FREQUENTATIVE ORIGIN
+        </p>
+        <p class="text-sm mb-5" style="color:rgba(245,237,224,0.58);line-height:1.7;">
+          Verbs encoding gentle, repeated, body-proximate movement. The voiced /d/ gives
+          these words their characteristic warmth — actions of care, closeness, and
+          slow deliberate motion that feel as intimate as they sound.
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs font-serif italic"
+             style="color:rgba(245,237,224,0.68);">
+          <span>cuddle</span><span>·</span>
+          <span>coddle</span><span>·</span>
+          <span>dawdle</span><span>·</span>
+          <span>fondle</span><span>·</span>
+          <span>dandle</span><span>·</span>
+          <span>waddle</span><span>·</span>
+          <span>paddle</span>
+        </div>
+      </div>
+
+      <!-- Tool & Instrument Nouns -->
+      <div class="cluster-card">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+             style="background:rgba(212,160,48,0.14);border:1px solid rgba(212,160,48,0.32);">
+          <span class="font-display text-base font-bold" style="color:#d4a030;">TN</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2" style="color:#f5ede0;">
+          Tool &amp; Instrument Nouns
+        </h3>
+        <p class="text-xs tracking-widest mb-4 font-display" style="color:#c84858;">
+          FORMATIVE ORIGIN
+        </p>
+        <p class="text-sm mb-5" style="color:rgba(245,237,224,0.58);line-height:1.7;">
+          Among the oldest ‑dle words: concrete nouns for implements of daily physical life.
+          The suffix functions as an instrument marker — "the thing by which one performs
+          the base action" — rooted in OE ‑del and PGmc *‑þlaz.
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs font-serif italic"
+             style="color:rgba(245,237,224,0.68);">
+          <span>handle</span><span>·</span>
+          <span>spindle</span><span>·</span>
+          <span>needle</span><span>·</span>
+          <span>saddle</span><span>·</span>
+          <span>ladle</span><span>·</span>
+          <span>ruddle</span><span>·</span>
+          <span>thimble</span>
+        </div>
+      </div>
+
+      <!-- Puzzle & State Nouns -->
+      <div class="cluster-card">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+             style="background:rgba(74,48,32,0.55);border:1px solid rgba(212,160,48,0.28);">
+          <span class="font-display text-base font-bold" style="color:#f5ede0;">PS</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2" style="color:#f5ede0;">
+          Puzzle, State &amp; Abstract Nouns
+        </h3>
+        <p class="text-xs tracking-widest mb-4 font-display"
+           style="color:rgba(212,160,48,0.60);">
+          LOANWORD &amp; EXTENDED USE
+        </p>
+        <p class="text-sm mb-5" style="color:rgba(245,237,224,0.58);line-height:1.7;">
+          Nouns and verbs denoting mental puzzlement, confused states, or tangled conditions.
+          The ‑dle ending here absorbed Latin and Germanic loanwords and extended into
+          metaphorical domains of cognitive difficulty and disorder.
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs font-serif italic"
+             style="color:rgba(245,237,224,0.68);">
+          <span>riddle</span><span>·</span>
+          <span>muddle</span><span>·</span>
+          <span>huddle</span><span>·</span>
+          <span>bundle</span><span>·</span>
+          <span>candle</span><span>·</span>
+          <span>middle</span><span>·</span>
+          <span>cradle</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ LETTERS ════════════════════ -->
+<section class="py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="text-center mb-14 fade-up">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">THE THREE LETTERS</p>
+      <h2 class="font-display font-bold mb-4"
+          style="font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;">
+        D · L · E
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-3 gap-5 fade-up">
+
+      <div class="letter-tile">
+        <div class="font-display font-black mb-4" style="font-size:4rem;color:#c84858;">D</div>
+        <p class="font-display text-xs tracking-widest mb-2" style="color:#d4a030;">VOICED STOP</p>
+        <p class="text-xs" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          The voiced alveolar stop /d/ is the defining feature of ‑dle. It is the precise
+          phonological difference from ‑tle: where ‑tle is sharp and decisive, ‑dle is
+          warm, resonant, and intimate in the mouth.
+        </p>
+      </div>
+
+      <div class="letter-tile">
+        <div class="font-display font-black mb-4" style="font-size:4rem;color:#d4a030;">L</div>
+        <p class="font-display text-xs tracking-widest mb-2" style="color:#c84858;">LIQUID</p>
+        <p class="text-xs" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          The lateral /l/ follows the voiced stop, often forming a syllabic /l̩/ in
+          modern speech (<em>han·dle</em> [ˈhæn.dl̩]). It gives the suffix its flowing,
+          sustained quality — softening the stop into something lingering.
+        </p>
+      </div>
+
+      <div class="letter-tile">
+        <div class="font-display font-black mb-4" style="font-size:4rem;color:#f5ede0;">E</div>
+        <p class="font-display text-xs tracking-widest mb-2" style="color:#d4a030;">SILENT</p>
+        <p class="text-xs" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          The silent final ‑e is, as in ‑tle, a Middle English orthographic convention
+          preserving the historical ‑el ending. It marks the syllabic /l/ rather than
+          representing a vowel sound in modern Standard English.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ FEATURES ════════════════════ -->
+<section class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-14 fade-up">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">LINGUISTIC FEATURES</p>
+      <h2 class="font-display font-bold"
+          style="font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;">
+        What Makes ‑dle Distinctive
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 fade-up">
+
+      <div class="feature-card">
+        <div class="text-2xl mb-3">🕯️</div>
+        <h3 class="font-display font-semibold mb-2" style="color:#f5ede0;font-size:1rem;">
+          Phonaesthetic Warmth
+        </h3>
+        <p class="text-sm" style="color:rgba(245,237,224,0.55);line-height:1.7;">
+          The voiced /d/ gives ‑dle its distinctive warmth. Psycholinguistic studies on
+          sound symbolism consistently show that voiced stops feel softer and more
+          intimate than their voiceless counterparts — explaining why the most tender
+          English words cluster around ‑dle: <em>cuddle, cradle, coddle, fondle.</em>
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="text-2xl mb-3">🤲</div>
+        <h3 class="font-display font-semibold mb-2" style="color:#f5ede0;font-size:1rem;">
+          The Hand Suffix
+        </h3>
+        <p class="text-sm" style="color:rgba(245,237,224,0.55);line-height:1.7;">
+          <em>Handle</em> (OE <em>handle</em>, literally "that which one handles with the
+          hand") is the paradigm case: ‑dle as the instrument of the hand. Many ‑dle words
+          encode manual, body-proximate activity — <em>paddle, ladle, saddle, spindle</em>
+          — making it uniquely the "hand suffix" of English.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="text-2xl mb-3">🔀</div>
+        <h3 class="font-display font-semibold mb-2" style="color:#f5ede0;font-size:1rem;">
+          Geminate Doubling
+        </h3>
+        <p class="text-sm" style="color:rgba(245,237,224,0.55);line-height:1.7;">
+          Many ‑dle words double the consonant before ‑dle (‑ddle) when the preceding
+          vowel is short: <em>fiddle, riddle, middle, muddle, cuddle, paddle, saddle.</em>
+          This geminate doubling is a systematic orthographic rule marking vowel quantity
+          inherited from Middle English scribal conventions.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="text-2xl mb-3">👶</div>
+        <h3 class="font-display font-semibold mb-2" style="color:#f5ede0;font-size:1rem;">
+          Nursery Register Density
+        </h3>
+        <p class="text-sm" style="color:rgba(245,237,224,0.55);line-height:1.7;">
+          ‑dle has the highest density of nursery-register words of any English suffix cluster.
+          <em>Cradle, cuddle, coddle, dandle, dawdle, fondle, waddle, toddle</em> — these
+          are the words of childhood, care, and the domestic hearth, a semantic field
+          uniquely dominated by the voiced ‑dle cluster.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="text-2xl mb-3">🎻</div>
+        <h3 class="font-display font-semibold mb-2" style="color:#f5ede0;font-size:1rem;">
+          Musical Instrument Heritage
+        </h3>
+        <p class="text-sm" style="color:rgba(245,237,224,0.55);line-height:1.7;">
+          <em>Fiddle</em> (OE <em>fiðele</em>, from Latin <em>vitula</em>) is among the
+          oldest ‑dle words in the musical domain, alongside <em>hurdle</em> and
+          <em>griddle</em>. The suffix's association with string instruments and
+          rhythmic repetition echoes its frequentative origin.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="text-2xl mb-3">🧩</div>
+        <h3 class="font-display font-semibold mb-2" style="color:#f5ede0;font-size:1rem;">
+          The Puzzle Cluster
+        </h3>
+        <p class="text-sm" style="color:rgba(245,237,224,0.55);line-height:1.7;">
+          <em>Riddle</em> (OE <em>rǣdelse</em>, "counsel, conjecture") heads a unique
+          semantic cluster of ‑dle words denoting mental entanglement: <em>muddle,
+          huddle, fiddle</em> (as in "fiddle with"), <em>twiddle, meddle, dawdle.</em>
+          The voiced cluster sonically mirrors the confused, looping quality it names.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ TIMELINE ════════════════════ -->
+<section class="py-24 px-6">
+  <div class="max-w-3xl mx-auto">
+
+    <div class="text-center mb-14 fade-up">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">HISTORY</p>
+      <h2 class="font-display font-bold"
+          style="font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;">
+        Etymology Timeline
+      </h2>
+    </div>
+
+    <div class="fade-up">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="font-display text-xs tracking-widest mb-1" style="color:#d4a030;">
+          3000 – 500 BCE · PROTO-GERMANIC
+        </p>
+        <h4 class="font-serif text-lg font-semibold mb-2" style="color:#f5ede0;">
+          *‑dalōną &amp; *‑dlaz — voiced pair
+        </h4>
+        <p class="text-sm" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          Proto-Germanic develops voiced counterparts to the voiceless frequentative
+          and formative suffixes. *‑dalōną encodes repeated gentle motion; *‑dlaz
+          (variant of *‑þlaz) marks instruments. The voiced /d/ distinguishes these
+          as the warmer, body-closer forms.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="font-display text-xs tracking-widest mb-1" style="color:#d4a030;">
+          450 – 1100 CE · OLD ENGLISH
+        </p>
+        <h4 class="font-serif text-lg font-semibold mb-2" style="color:#f5ede0;">
+          ‑del / ‑dol in Old English
+        </h4>
+        <p class="text-sm" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          Old English inherits the Germanic ‑del / ‑dol cluster. <em>Nǣdl</em>
+          (needle), <em>handle</em>, <em>spinel</em> (spindle), <em>sadol</em> (saddle)
+          are attested. The instrument-noun function is well established;
+          frequentative verbs are forming in colloquial speech.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="font-display text-xs tracking-widest mb-1" style="color:#d4a030;">
+          1066 – 1350 CE · MIDDLE ENGLISH (NORMAN)
+        </p>
+        <h4 class="font-serif text-lg font-semibold mb-2" style="color:#f5ede0;">
+          Latin words converge: <em>candela → candle</em>
+        </h4>
+        <p class="text-sm" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          Latin <em>candela</em> → Old French <em>chandele</em> → Middle English
+          <em>candel</em> then <em>candle</em>. The ‑dle spelling becomes the standard
+          orthographic realisation. Colloquial frequentative verbs like <em>cuddle</em>
+          and <em>dawdle</em> begin appearing in written records.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="font-display text-xs tracking-widest mb-1" style="color:#d4a030;">
+          1350 – 1600 CE · EARLY MODERN ENGLISH
+        </p>
+        <h4 class="font-serif text-lg font-semibold mb-2" style="color:#f5ede0;">
+          Geminate spelling standardised
+        </h4>
+        <p class="text-sm" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          Printers standardise the geminate-consonant rule: short vowel + doubled
+          consonant + ‑dle. <em>Fiddle, riddle, middle, saddle, paddle, muddle</em>
+          acquire their modern double-consonant spellings. <em>Cradle</em> and
+          <em>ladle</em> retain single consonants marking long vowels.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="font-display text-xs tracking-widest mb-1" style="color:#d4a030;">
+          1600 CE – PRESENT · MODERN ENGLISH
+        </p>
+        <h4 class="font-serif text-lg font-semibold mb-2" style="color:#f5ede0;">
+          Nursery lexicon &amp; new coinages
+        </h4>
+        <p class="text-sm" style="color:rgba(245,237,224,0.52);line-height:1.7;">
+          ‑dle consolidates as the suffix of intimate, domestic, and playful language.
+          New coinages continue: <em>coddle</em> (17th c.), <em>dandle</em> (16th c.),
+          <em>twiddle</em> (17th c.), <em>toddle</em> (17th c.), <em>doodle</em> (18th c.).
+          The suffix remains productively alive in informal coinage to the present day.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ WORD GALLERY ════════════════════ -->
+<section id="words" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-14 fade-up">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">LEXICON</p>
+      <h2 class="font-display font-bold mb-4"
+          style="font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;">
+        Word Gallery
+      </h2>
+      <p class="text-sm" style="color:rgba(245,237,224,0.48);">
+        A living cross-section of the ‑dle lexicon across all three streams.
+      </p>
+    </div>
+
+    <div class="fade-up flex flex-wrap gap-3 justify-center">
+      <span class="word-pill">bundle</span>
+      <span class="word-pill">candle</span>
+      <span class="word-pill">coddle</span>
+      <span class="word-pill">cradle</span>
+      <span class="word-pill">cuddle</span>
+      <span class="word-pill">dandle</span>
+      <span class="word-pill">dawdle</span>
+      <span class="word-pill">doodle</span>
+      <span class="word-pill">fiddle</span>
+      <span class="word-pill">fondle</span>
+      <span class="word-pill">griddle</span>
+      <span class="word-pill">handle</span>
+      <span class="word-pill">huddle</span>
+      <span class="word-pill">hurdle</span>
+      <span class="word-pill">kindle</span>
+      <span class="word-pill">ladle</span>
+      <span class="word-pill">meddle</span>
+      <span class="word-pill">middle</span>
+      <span class="word-pill">muddle</span>
+      <span class="word-pill">needle</span>
+      <span class="word-pill">noodle</span>
+      <span class="word-pill">paddle</span>
+      <span class="word-pill">peddle</span>
+      <span class="word-pill">piddle</span>
+      <span class="word-pill">puddle</span>
+      <span class="word-pill">riddle</span>
+      <span class="word-pill">saddle</span>
+      <span class="word-pill">spindle</span>
+      <span class="word-pill">straddle</span>
+      <span class="word-pill">swaddle</span>
+      <span class="word-pill">toddle</span>
+      <span class="word-pill">twiddle</span>
+      <span class="word-pill">waddle</span>
+      <span class="word-pill">wheedle</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ CODEX ════════════════════ -->
+<section id="codex" class="py-24 px-6">
+  <div class="max-w-3xl mx-auto fade-up">
+
+    <div class="text-center mb-10">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">SUFFIX PROFILE</p>
+      <h2 class="font-display font-bold"
+          style="font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;">
+        The ‑dle Codex
+      </h2>
+    </div>
+
+    <div class="codex-box">
+      <div class="codex-row">
+        <span class="codex-key">SUFFIX</span>
+        <span class="codex-val font-serif italic">‑dle (also ‑ddle after short vowel)</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">COMPONENTS</span>
+        <span class="codex-val">PGmc *‑d‑ (voiced stop) + *‑l‑ (liquid) + ME silent ‑e</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">FUNCTION</span>
+        <span class="codex-val">Frequentative verb · Instrument/tool noun · Loanword assimilation</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">CORE MEANING</span>
+        <span class="codex-val">"gentle repeated action" · "instrument of the hand" · "state of entanglement"</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">VOICED TWIN OF</span>
+        <span class="codex-val font-serif italic">‑tle (tle.kr) — voiceless /t/ counterpart</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">PHONOLOGY</span>
+        <span class="codex-val">Voiced /d/ + syllabic /l̩/ in modern speech; geminate ‑dd‑ rule after short vowels</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">PHONAESTHETICS</span>
+        <span class="codex-val">Warmth, intimacy, gentle repetition, body-closeness, domestic tenderness</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">REGISTER</span>
+        <span class="codex-val">Universal, with high density in nursery, domestic, and informal registers</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">WORD COUNT</span>
+        <span class="codex-val">180+ established words; productively alive in informal coinages</span>
+      </div>
+      <div class="codex-row">
+        <span class="codex-key">DOMAIN</span>
+        <span class="codex-val" style="color:#c84858;">dle.kr</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ SERIES ════════════════════ -->
+<section id="series" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-14 fade-up">
+      <p class="text-xs tracking-widest font-display mb-3" style="color:#d4a030;">SUFFIX DOMAIN SERIES</p>
+      <h2 class="font-display font-bold mb-4"
+          style="font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;">
+        Explore the Series
+      </h2>
+      <p class="text-sm" style="color:rgba(245,237,224,0.48);">
+        Each domain in this series is dedicated to one English suffix — its origin, function, and lexicon.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 fade-up">
+      <a href="https://ous.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑OUS</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ous.kr</span></a>
+      <a href="https://ize.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑IZE</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ize.kr</span></a>
+      <a href="https://ive.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑IVE</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ive.kr</span></a>
+      <a href="https://ity.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑ITY</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ity.kr</span></a>
+      <a href="https://ify.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑IFY</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ify.kr</span></a>
+      <a href="https://ial.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑IAL</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ial.kr</span></a>
+      <a href="https://ful.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑FUL</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ful.kr</span></a>
+      <a href="https://ary.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑ARY</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ary.kr</span></a>
+      <a href="https://ble.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑BLE</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ble.kr</span></a>
+      <a href="https://rry.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑RRY</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">rry.kr</span></a>
+      <a href="https://ppy.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑PPY</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ppy.kr</span></a>
+      <a href="https://ple.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑PLE</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">ple.kr</span></a>
+      <a href="https://bly.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑BLY</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">bly.kr</span></a>
+      <a href="https://tle.kr" class="series-card"><span class="font-display font-bold text-lg" style="color:#f5ede0;">‑TLE</span><span class="text-xs" style="color:rgba(245,237,224,0.40);">tle.kr</span></a>
+      <a href="https://dle.kr" class="series-card active"><span class="font-display font-bold text-lg" style="color:#c84858;">‑DLE</span><span class="text-xs" style="color:rgba(200,72,88,0.65);">dle.kr</span></a>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ ORIGIN NARRATIVE ════════════════════ -->
+<section class="py-24 px-6">
+  <div class="max-w-3xl mx-auto text-center fade-up">
+    <p class="text-xs tracking-widest font-display mb-6" style="color:#d4a030;">THE STORY OF ‑DLE</p>
+    <blockquote class="font-serif italic mb-8"
+                style="font-size:clamp(1.2rem,2.8vw,1.8rem);line-height:1.70;color:rgba(245,237,224,0.88);">
+      "Every language has a register of tenderness —
+      words reserved for the cradle, the hearth, the hand that holds.
+      In English, that register belongs to ‑dle.
+      Not the sharp whistle of ‑tle, but the warm, voiced hum of the candle-lit room:
+      <em>cuddle, cradle, fondle, dandle.</em>
+      These are not merely words. They are the sound of care itself."
+    </blockquote>
+    <p style="color:rgba(245,237,224,0.40);font-size:0.85rem;font-family:var(--font-display);letter-spacing:0.10em;">
+      — dle.kr, 2026
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════ CONTACT ════════════════════ -->
+<section class="py-24 px-6 text-center fade-up">
+  <div class="max-w-xl mx-auto">
+    <p class="text-xs tracking-widest font-display mb-4" style="color:#d4a030;">CONTACT</p>
+    <h2 class="font-display font-bold mb-4"
+        style="font-size:clamp(1.8rem,4vw,2.6rem);color:#f5ede0;">
+      Get in Touch
+    </h2>
+    <p class="mb-8 text-sm" style="color:rgba(245,237,224,0.52);line-height:1.8;">
+      Inquiries about the ‑dle suffix, the suffix domain series,
+      or domain partnerships are warmly welcomed.
+    </p>
+    <a href="mailto:hello@dle.kr"
+       class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all"
+       style="background:rgba(200,72,88,0.85);color:#f5ede0;font-size:1rem;"
+       onmouseover="this.style.background='rgba(200,72,88,1)'"
+       onmouseout="this.style.background='rgba(200,72,88,0.85)'">
+      ✉ hello@dle.kr
+    </a>
+  </div>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer class="py-10 px-6 border-t" style="border-color:rgba(212,160,48,0.16);">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center border"
+           style="background:rgba(200,72,88,0.14);border-color:rgba(200,72,88,0.38);">
+        <span class="font-display text-xs font-bold" style="color:#c84858;">DLE</span>
+      </div>
+      <span class="font-display text-sm tracking-wide"
+            style="color:rgba(245,237,224,0.55);">dle.kr</span>
+    </div>
+    <p class="text-xs text-center"
+       style="color:rgba(245,237,224,0.30);font-family:var(--font-display);letter-spacing:0.08em;">
+      © 2026 DLE.KR — THE SUFFIX DOMAIN SERIES
+    </p>
+    <a href="mailto:hello@dle.kr"
+       class="text-xs transition-colors" style="color:rgba(200,72,88,0.60);"
+       onmouseover="this.style.color='#c84858'"
+       onmouseout="this.style.color='rgba(200,72,88,0.60)'">
+      hello@dle.kr
+    </a>
+  </div>
+</footer>
+
+<!-- ════════════════════ SCRIPTS ════════════════════ -->
+<script>
+/* ── Fade-up Observer ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ══════════════════════════════════════════════════════════════
+   PARTICLE SYSTEM — 4 LAYERS
+   1. CandleMote  — warm rising sparks (Ember Rose / Candle Gold)
+   2. DleWord     — floating -dle words in italic serif
+   3. WarmGlow    — radial warm-glow pulses (hearth effect)
+   4. HearthRing  — slow expanding rings (Candle Gold)
+══════════════════════════════════════════════════════════════ */
+(function () {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const ROSE  = 'rgba(200,72,88,';
+  const GOLD  = 'rgba(212,160,48,';
+  const CREAM = 'rgba(245,237,224,';
+
+  /* ── Layer 1: CandleMote — rising warm sparks ── */
+  class CandleMote {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x   = Math.random() * W;
+      this.y   = init ? Math.random() * H : H + 8;
+      this.r   = 0.9 + Math.random() * 2.2;
+      this.vy  = -(0.20 + Math.random() * 0.35);
+      this.vx  = (Math.random() - 0.5) * 0.25;
+      this.a   = 0.05 + Math.random() * 0.20;
+      this.flicker = Math.random() * Math.PI * 2;
+      this.col = Math.random() < 0.55 ? ROSE : GOLD;
+    }
+    update() {
+      this.x += this.vx + Math.sin(this.flicker) * 0.18;
+      this.y += this.vy;
+      this.flicker += 0.045;
+      if (this.y < -10) this.reset(false);
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.col + this.a + ')';
+      ctx.fill();
+    }
+  }
+
+  /* ── Layer 2: DleWord — floating -dle words ── */
+  const DLE_WORDS = [
+    'cuddle','cradle','candle','handle','riddle','fiddle',
+    'needle','saddle','paddle','middle','bundle','muddle',
+    'huddle','waddle','dawdle','kindle','toddle','fondle',
+    'twiddle','doodle','noodle','wheedle','straddle','swaddle',
+    'spindle','meddle','peddle','puddle','hurdle','griddle'
+  ];
+  class DleWord {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.word  = DLE_WORDS[Math.floor(Math.random() * DLE_WORDS.length)];
+      this.x     = Math.random() * W;
+      this.y     = init ? Math.random() * H : H + 35;
+      this.vy    = -(0.10 + Math.random() * 0.18);
+      this.a     = 0.04 + Math.random() * 0.08;
+      this.size  = 9 + Math.random() * 10;
+      this.drift = (Math.random() - 0.5) * 0.008;
+      this.angle = 0;
+    }
+    update() {
+      this.y     += this.vy;
+      this.angle += this.drift;
+      if (this.y < -40) this.reset(false);
+    }
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+      ctx.font = `italic ${this.size}px 'Libre Baskerville', serif`;
+      ctx.fillStyle = CREAM + this.a + ')';
+      ctx.fillText(this.word, 0, 0);
+      ctx.restore();
+    }
+  }
+
+  /* ── Layer 3: WarmGlow — radial hearth pulses ── */
+  class WarmGlow {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x    = Math.random() * W;
+      this.y    = init ? Math.random() * H : Math.random() * H;
+      this.r    = init ? Math.random() * 90 : 5;
+      this.maxR = 45 + Math.random() * 65;
+      this.dr   = 0.22 + Math.random() * 0.20;
+      this.a    = 0.06 + Math.random() * 0.08;
+      this.col  = Math.random() < 0.6 ? GOLD : ROSE;
+    }
+    update() {
+      this.r += this.dr;
+      this.a *= 0.990;
+      if (this.r > this.maxR || this.a < 0.004) this.reset(false);
+    }
+    draw() {
+      const grad = ctx.createRadialGradient(
+        this.x, this.y, 0, this.x, this.y, this.r);
+      grad.addColorStop(0,   this.col + this.a + ')');
+      grad.addColorStop(1,   this.col + '0)');
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+  }
+
+  /* ── Layer 4: HearthRing — slow expanding rings ── */
+  class HearthRing {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x    = Math.random() * W;
+      this.y    = Math.random() * H;
+      this.r    = init ? Math.random() * 70 : 2;
+      this.maxR = 50 + Math.random() * 80;
+      this.dr   = 0.25 + Math.random() * 0.22;
+      this.a    = 0.15 + Math.random() * 0.16;
+      this.w    = 0.6 + Math.random() * 1.0;
+    }
+    update() {
+      this.r += this.dr;
+      this.a *= 0.988;
+      if (this.r > this.maxR || this.a < 0.005) this.reset(false);
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.strokeStyle = GOLD + this.a + ')';
+      ctx.lineWidth   = this.w;
+      ctx.stroke();
+    }
+  }
+
+  /* ── Instantiate ── */
+  const motes = Array.from({ length: 65 }, () => new CandleMote());
+  const words = Array.from({ length: 28 }, () => new DleWord());
+  const glows = Array.from({ length: 18 }, () => new WarmGlow());
+  const rings = Array.from({ length: 13 }, () => new HearthRing());
+
+  /* ── Render Loop ── */
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    [...glows, ...rings, ...motes, ...words].forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+
+</body>
+</html>
