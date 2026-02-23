@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="dle.kr – the gentle action suffix · repeated & diminutive motion"/>
+<title>dle.kr</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif}
+body{
+  display:flex;align-items:center;justify-content:center;
+  background:#080c0a;
+  position:relative;
+}
+
+/* ── background orbs ── */
+.bg-orb{position:fixed;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+.bg-orb-1{width:680px;height:480px;top:-12%;left:-10%;
+  background:radial-gradient(ellipse,rgba(60,180,140,0.18) 0%,transparent 70%)}
+.bg-orb-2{width:540px;height:540px;top:30%;right:-14%;
+  background:radial-gradient(ellipse,rgba(40,160,120,0.15) 0%,transparent 70%)}
+.bg-orb-3{width:420px;height:310px;bottom:-8%;left:18%;
+  background:radial-gradient(ellipse,rgba(80,200,160,0.13) 0%,transparent 70%)}
+.bg-orb-4{width:330px;height:250px;top:8%;right:28%;
+  background:radial-gradient(ellipse,rgba(50,170,130,0.10) 0%,transparent 70%)}
+.bg-orb-5{width:270px;height:200px;bottom:14%;right:8%;
+  background:radial-gradient(ellipse,rgba(100,210,170,0.09) 0%,transparent 70%)}
+.bg-orb-6{width:210px;height:170px;top:45%;left:6%;
+  background:radial-gradient(ellipse,rgba(30,150,110,0.07) 0%,transparent 70%)}
+
+/* ── ripple field ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle,rgba(60,190,150,0.038) 1px,transparent 1px),
+    radial-gradient(circle,rgba(40,160,120,0.026) 1px,transparent 1px),
+    radial-gradient(circle,rgba(90,210,165,0.020) 1px,transparent 1px);
+  background-size:38px 38px,64px 64px,92px 92px;
+  background-position:0 0,19px 19px,9px 9px;
+}
+
+/* ── scene & card wrap ── */
+.scene{position:relative;z-index:10;perspective:900px}
+.card-wrap{
+  width:380px;height:240px;border-radius:18px;
+  transform-style:preserve-3d;position:relative;cursor:pointer;
+  animation:card-enter 1.2s cubic-bezier(.22,.68,0,1.18) both,
+             float-idle 10s ease-in-out 1.3s infinite;
+}
+@keyframes card-enter{
+  from{opacity:0;transform:translateY(12px) rotateX(-14deg) rotateY(8deg) scale(.92)}
+  to  {opacity:1;transform:translateY(0)    rotateX(0deg)   rotateY(0deg) scale(1)}
+}
+@keyframes float-idle{
+  0%,100%{transform:translateY(0px)  rotateX(0deg)}
+  33%    {transform:translateY(-4px) rotateX(.6deg)}
+  66%    {transform:translateY(2.5px)rotateX(-.4deg)}
+}
+
+/* ── holographic overlay ── */
+.card-holo{
+  position:absolute;inset:0;border-radius:18px;z-index:4;pointer-events:none;
+  opacity:0;transition:opacity .35s;
+  background:conic-gradient(from var(--r,0deg) at var(--mx,50%) var(--my,50%),
+    rgba(60,180,140,0)    0%,
+    rgba(80,210,165,.18) 15%,
+    rgba(160,240,210,.14)30%,
+    rgba(50,170,130,.10) 50%,
+    rgba(60,180,140,0)  70%);
+  mix-blend-mode:screen;
+}
+.card-wrap:hover .card-holo{opacity:1}
+
+/* ── spotlight ── */
+.card-spot{
+  position:absolute;inset:0;border-radius:18px;z-index:3;pointer-events:none;
+  opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle 130px at var(--mx,50%) var(--my,50%),
+    rgba(100,220,180,.12) 0%,transparent 80%);
+}
+.card-wrap:hover .card-spot{opacity:1}
+
+/* ── shimmer ── */
+.card-shimmer{
+  position:absolute;inset:0;border-radius:18px;z-index:2;pointer-events:none;overflow:hidden;
+}
+.card-shimmer::after{
+  content:'';position:absolute;
+  top:-60%;left:-75%;width:55%;height:220%;
+  background:linear-gradient(105deg,transparent 30%,rgba(120,230,190,.10) 50%,transparent 70%);
+  animation:dle-sweep 7.5s ease-in-out infinite;
+}
+@keyframes dle-sweep{
+  0%  {transform:translateX(0)     rotate(8deg)}
+  100%{transform:translateX(900px) rotate(8deg)}
+}
+
+/* ── texture ── */
+.card-texture{
+  position:absolute;inset:0;border-radius:18px;z-index:1;pointer-events:none;opacity:.038;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='1' cy='1' r='.7' fill='%2340c898'/%3E%3C/svg%3E");
+  background-size:6px 6px;
+}
+
+/* ── edge ── */
+.card-edge{
+  position:absolute;inset:0;border-radius:18px;z-index:5;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(70,200,155,.16),
+             inset 0 1px 0   rgba(140,235,200,.12);
+}
+
+/* ── main card ── */
+.card{
+  width:100%;height:100%;border-radius:18px;
+  position:relative;overflow:hidden;z-index:6;
+  background:linear-gradient(132deg,
+    rgba(6,20,14,0.97)  0%,
+    rgba(4,15,10,0.98)  55%,
+    rgba(2,10,7,1)      100%);
+  backdrop-filter:blur(24px);
+  border:1px solid rgba(60,190,145,.15);
+  box-shadow:0 8px 44px rgba(0,0,0,.65),
+             0 2px 12px rgba(50,180,135,.11);
+}
+
+/* ── SVG art ── */
+.card-inner-art{position:absolute;inset:0;z-index:0;pointer-events:none}
+
+/* ── particle container ── */
+#rippleContainer{position:absolute;inset:0;z-index:7;pointer-events:none;
+                 overflow:hidden;border-radius:18px}
+
+/* ── letter tag ── */
+.letter-tag{
+  position:absolute;top:14px;left:16px;z-index:9;
+  font-size:11px;font-weight:700;letter-spacing:.16em;
+  color:rgba(130,225,185,.85);
+  border:1px solid rgba(70,200,155,.26);
+  padding:3px 9px 3px 8px;border-radius:20px;
+  background:rgba(4,18,12,.55);backdrop-filter:blur(6px);
+  display:flex;align-items:center;gap:7px;
+}
+.dle-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(70,210,160,.9);
+  box-shadow:0 0 6px rgba(70,210,160,.7);
+  animation:dle-pulse 2.6s ease-in-out infinite;
+}
+@keyframes dle-pulse{
+  0%,100%{transform:scale(1);  opacity:.9}
+  50%    {transform:scale(1.4);opacity:1}
+}
+
+/* ── meanings overlay ── */
+.card-meanings{
+  position:absolute;inset:0;z-index:8;border-radius:18px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;
+  padding:24px;
+  background:rgba(2,12,8,.83);backdrop-filter:blur(8px);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.card-wrap:hover .card-meanings{opacity:1}
+.mean-item{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  color:rgba(150,235,195,.9);font-size:10px;font-weight:600;letter-spacing:.1em;
+  background:rgba(12,44,28,.5);border:1px solid rgba(60,195,148,.24);
+  border-radius:10px;padding:8px 13px;min-width:72px;
+}
+.mean-item span:first-child{font-size:18px}
+
+/* ── card content ── */
+.card-content{
+  position:absolute;bottom:0;right:0;
+  padding:12px 16px;z-index:9;text-align:right;
+}
+.name-main{
+  font-size:22px;font-weight:800;letter-spacing:.01em;
+  color:rgba(170,240,205,.95);
+  text-shadow:0 0 18px rgba(55,185,140,.44);
+}
+.name-dot{color:rgba(65,210,160,.9)}
+.name-sub{
+  font-size:8.5px;font-weight:500;letter-spacing:.16em;
+  color:rgba(110,205,165,.64);margin-top:2px;text-transform:uppercase;
+}
+.meta-row{
+  font-size:7.5px;font-weight:600;letter-spacing:.18em;
+  color:rgba(90,180,140,.48);margin-top:5px;text-transform:uppercase;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:7px;
+  background:rgba(6,22,14,.6);
+  border:1px solid rgba(65,200,152,.26);
+  border-radius:20px;padding:3px 10px;
+  font-size:9px;font-weight:700;letter-spacing:.14em;
+  color:rgba(145,230,190,.9);
+}
+.domain-url{
+  font-size:9px;font-weight:600;letter-spacing:.12em;
+  color:rgba(85,175,135,.44);margin-top:4px;
+}
+.domain-tld{color:rgba(65,205,158,.68)}
+
+/* ── ripple particle ── */
+.ripple{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(70,210,160,0.6);
+  animation:ripple-expand linear infinite;
+  opacity:0;
+}
+@keyframes ripple-expand{
+  0%  {transform:scale(.1) translateX(0)            translateY(0);           opacity:0}
+  8%  {opacity:.80}
+  60% {opacity:.38}
+  100%{transform:scale(1)  translateX(var(--dx,6px)) translateY(-180px);     opacity:0}
+}
+
+/* ── SVG keyframes ── */
+@keyframes cradle-rock  {0%,100%{transform:rotate(-8deg)} 50%{transform:rotate(8deg)}}
+@keyframes ripple-ring  {0%{r:4; opacity:.75} 100%{r:32;opacity:0}}
+@keyframes ripple-ring2 {0%{r:4; opacity:.55} 100%{r:22;opacity:0}}
+@keyframes glow-soft    {0%,100%{opacity:.45} 50%{opacity:.80}}
+@keyframes bar-fill     {from{width:0} to{width:var(--bw,60px)}}
+@keyframes word-fade    {0%,100%{opacity:.52} 50%{opacity:.94}}
+@keyframes float-word   {0%,100%{transform:translateY(0)} 50%{transform:translateY(-2.5px)}}
+@keyframes spiral-turn  {from{transform:rotate(0deg)}  to{transform:rotate(360deg)}}
+@keyframes handle-sway  {0%,100%{transform:rotate(-4deg)} 50%{transform:rotate(4deg)}}
+@keyframes dot-drift    {0%,100%{transform:translateY(0) scale(1); opacity:.7}
+                          50%{transform:translateY(-5px) scale(1.2); opacity:1}}
+@keyframes path-trace   {from{stroke-dashoffset:180} to{stroke-dashoffset:0}}
+@keyframes needle-rock  {0%,100%{transform:rotate(-12deg)} 50%{transform:rotate(12deg)}}
+</style>
+</head>
+<body>
+
+<!-- background orbs -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<div class="bg-orb bg-orb-4"></div>
+<div class="bg-orb bg-orb-5"></div>
+<div class="bg-orb bg-orb-6"></div>
+
+<div class="scene">
+  <div class="card-wrap is-idle" id="cardWrap">
+    <div class="card-holo"    id="cardHolo"></div>
+    <div class="card-spot"    id="cardSpot"></div>
+    <div class="card-shimmer"></div>
+    <div class="card-texture"></div>
+    <div class="card-edge"></div>
+
+    <div class="card" id="cardFace">
+
+      <!-- SVG art layer -->
+      <div class="card-inner-art">
+        <svg width="380" height="240" viewBox="0 0 380 240"
+             xmlns="http://www.w3.org/2000/svg" overflow="visible">
+          <defs>
+            <radialGradient id="dleGrad" cx="34%" cy="50%" r="60%">
+              <stop offset="0%"   stop-color="rgba(55,185,140,0.22)"/>
+              <stop offset="100%" stop-color="rgba(4,14,9,0)"/>
+            </radialGradient>
+            <clipPath id="dleClip">
+              <rect width="380" height="240" rx="18"/>
+            </clipPath>
+            <marker id="dleArrow" markerWidth="6" markerHeight="6"
+                    refX="5" refY="3" orient="auto">
+              <path d="M0,.5 L5,3 L0,5.5" fill="none"
+                    stroke="rgba(70,205,158,0.8)" stroke-width="1"/>
+            </marker>
+            <filter id="dleGlow">
+              <feGaussianBlur stdDeviation="2.6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <g clip-path="url(#dleClip)">
+            <!-- base wash -->
+            <rect width="380" height="240" fill="url(#dleGrad)"/>
+
+            <!-- ══════════════════════════════════
+                 CONCENTRIC RIPPLE RINGS (left-center)
+                 ══════════════════════════════════ -->
+            <!-- outermost static rings -->
+            <circle cx="104" cy="118" r="46" fill="none"
+                    stroke="rgba(55,185,140,0.10)" stroke-width="1"/>
+            <circle cx="104" cy="118" r="38" fill="none"
+                    stroke="rgba(60,195,148,0.12)" stroke-width="1"/>
+
+            <!-- animated ripple rings -->
+            <circle cx="104" cy="118" r="4" fill="none"
+                    stroke="rgba(70,210,162,0.70)" stroke-width="1.3"
+                    style="animation:ripple-ring 3.6s ease-out infinite"/>
+            <circle cx="104" cy="118" r="4" fill="none"
+                    stroke="rgba(55,190,145,0.50)" stroke-width="1.0"
+                    style="animation:ripple-ring 3.6s ease-out 1.2s infinite"/>
+            <circle cx="104" cy="118" r="4" fill="none"
+                    stroke="rgba(80,215,168,0.35)" stroke-width=".7"
+                    style="animation:ripple-ring 3.6s ease-out 2.4s infinite"/>
+
+            <!-- secondary smaller rings -->
+            <circle cx="104" cy="118" r="4" fill="none"
+                    stroke="rgba(60,200,155,0.45)" stroke-width=".8"
+                    style="animation:ripple-ring2 2.8s ease-out .6s infinite"/>
+            <circle cx="104" cy="118" r="4" fill="none"
+                    stroke="rgba(80,215,168,0.30)" stroke-width=".6"
+                    style="animation:ripple-ring2 2.8s ease-out 1.8s infinite"/>
+
+            <!-- ── SPIRAL / SWIRL (gentle rotation) ── -->
+            <g transform="translate(104,118)"
+               style="animation:spiral-turn 18s linear infinite;transform-origin:0px 0px">
+              <path d="M 0 0 Q 12 -8 20 0 Q 28 8 20 16 Q 12 24 0 20"
+                    fill="none" stroke="rgba(65,200,155,0.30)"
+                    stroke-width="1" stroke-linecap="round"/>
+              <path d="M 0 0 Q -12 8 -20 0 Q -28 -8 -20 -16 Q -12 -24 0 -20"
+                    fill="none" stroke="rgba(55,185,142,0.25)"
+                    stroke-width=".9" stroke-linecap="round"/>
+            </g>
+
+            <!-- ── CRADLE / ROCKING ELEMENT ── -->
+            <!-- cradle arc base -->
+            <path d="M 78 148 Q 104 136 130 148"
+                  fill="none" stroke="rgba(65,195,150,0.40)"
+                  stroke-width="1.5" stroke-linecap="round"/>
+            <!-- rocking body -->
+            <g transform="translate(104,132)"
+               style="animation:cradle-rock 3.2s ease-in-out infinite;transform-origin:0px 16px">
+              <rect x="-14" y="-12" width="28" height="20" rx="4"
+                    fill="rgba(30,90,60,0.50)"
+                    stroke="rgba(70,205,158,0.45)" stroke-width="1"/>
+              <!-- baby lines inside -->
+              <line x1="-8" y1="-4" x2="8" y2="-4"
+                    stroke="rgba(120,230,185,0.50)" stroke-width=".8" stroke-linecap="round"/>
+              <line x1="-6" y1="1"  x2="6"  y2="1"
+                    stroke="rgba(100,220,175,0.40)" stroke-width=".7" stroke-linecap="round"/>
+              <!-- cradle hood arc -->
+              <path d="M -14 -12 Q 0 -22 14 -12"
+                    fill="rgba(25,80,52,0.45)"
+                    stroke="rgba(70,200,155,0.38)" stroke-width=".8"/>
+            </g>
+
+            <!-- center core dot -->
+            <circle cx="104" cy="118" r="8" fill="rgba(35,130,95,0.38)"
+                    style="animation:glow-soft 3.5s ease-in-out infinite"/>
+            <circle cx="104" cy="118" r="4"   fill="rgba(70,210,160,0.78)"/>
+            <circle cx="104" cy="118" r="1.8" fill="rgba(190,245,220,0.95)"/>
+
+            <!-- ── NEEDLE / KNITTING accent (top-left) ── -->
+            <g transform="translate(76,82)"
+               style="animation:needle-rock 4s ease-in-out infinite;transform-origin:4px 30px">
+              <line x1="4" y1="0" x2="4" y2="40"
+                    stroke="rgba(80,210,162,0.55)" stroke-width="1.6"
+                    stroke-linecap="round"/>
+              <circle cx="4" cy="2" r="2.5"
+                      fill="rgba(65,200,155,0.70)"
+                      stroke="rgba(130,235,192,0.55)" stroke-width=".7"/>
+            </g>
+            <g transform="translate(86,78)"
+               style="animation:needle-rock 4s ease-in-out 1s infinite;transform-origin:4px 30px">
+              <line x1="4" y1="0" x2="4" y2="38"
+                    stroke="rgba(55,185,142,0.48)" stroke-width="1.4"
+                    stroke-linecap="round"/>
+              <circle cx="4" cy="2" r="2.2"
+                      fill="rgba(55,190,145,0.65)"
+                      stroke="rgba(110,225,182,0.50)" stroke-width=".7"/>
+            </g>
+            <!-- knit thread arc between needles -->
+            <path d="M 78 86 Q 84 78 90 84"
+                  fill="none" stroke="rgba(90,215,168,0.42)"
+                  stroke-width="1.2" stroke-linecap="round"
+                  stroke-dasharray="18"
+                  style="animation:path-trace 2s .5s both ease"/>
+
+            <!-- floating gentle dots -->
+            <circle cx="68"  cy="100" r="2.2"
+                    fill="rgba(70,210,160,0.50)"
+                    style="animation:dot-drift 4s 0s ease-in-out infinite"/>
+            <circle cx="140" cy="102" r="1.8"
+                    fill="rgba(55,190,145,0.45)"
+                    style="animation:dot-drift 4s 1.2s ease-in-out infinite"/>
+            <circle cx="72"  cy="138" r="1.5"
+                    fill="rgba(80,215,165,0.40)"
+                    style="animation:dot-drift 4s 2.4s ease-in-out infinite"/>
+            <circle cx="136" cy="136" r="2.0"
+                    fill="rgba(60,198,152,0.45)"
+                    style="animation:dot-drift 4s .8s ease-in-out infinite"/>
+
+            <!-- ══════════════════════════════════
+                 WORD TRANSFORMATION CHAINS
+                 ══════════════════════════════════ -->
+            <!-- formula header -->
+            <text x="168" y="37"
+                  font-family="Inter,sans-serif" font-size="7.5" font-weight="700"
+                  letter-spacing=".12em" fill="rgba(65,190,148,0.52)">
+              [root] + ‑dle → [gentle / repeated action]
+            </text>
+
+            <!-- left bracket -->
+            <path d="M 158 42 L 152 42 L 152 148 L 158 148"
+                  fill="none" stroke="rgba(55,185,142,0.26)" stroke-width="1"/>
+            <text x="144" y="86" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="7" font-weight="700"
+                  letter-spacing=".1em" fill="rgba(55,182,140,0.43)"
+                  transform="rotate(-90,144,86)">GENTLE</text>
+
+            <!-- row 1: han → handle -->
+            <rect x="168" y="46" width="42" height="15" rx="4"
+                  fill="rgba(4,18,12,0.58)" stroke="rgba(55,185,142,0.26)" stroke-width=".7"/>
+            <text x="189" y="57.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8" font-weight="600"
+                  fill="rgba(140,225,188,0.9)"
+                  style="animation:word-fade 4s 0s infinite">han</text>
+            <path d="M 212 53.5 L 223 53.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="225" y="47" width="22" height="13" rx="3"
+                  fill="rgba(18,65,44,0.62)" stroke="rgba(90,220,168,0.50)" stroke-width=".8"/>
+            <text x="236" y="56.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="7" font-weight="700"
+                  fill="rgba(185,245,215,0.95)">+dle</text>
+            <path d="M 249 53.5 L 260 53.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="262" y="44" width="52" height="19" rx="5"
+                  fill="rgba(6,24,16,0.62)" stroke="rgba(60,195,150,0.32)" stroke-width=".7"/>
+            <text x="288" y="57" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8.5" font-weight="700"
+                  fill="rgba(165,238,202,0.95)"
+                  style="animation:word-fade 4s .5s infinite">handle</text>
+
+            <!-- row 2: cra → cradle -->
+            <rect x="168" y="73" width="42" height="15" rx="4"
+                  fill="rgba(4,18,12,0.58)" stroke="rgba(55,185,142,0.26)" stroke-width=".7"/>
+            <text x="189" y="84.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8" font-weight="600"
+                  fill="rgba(140,225,188,0.9)"
+                  style="animation:word-fade 4s .8s infinite">cra</text>
+            <path d="M 212 80.5 L 223 80.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="225" y="74" width="22" height="13" rx="3"
+                  fill="rgba(18,65,44,0.62)" stroke="rgba(90,220,168,0.50)" stroke-width=".8"/>
+            <text x="236" y="83.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="7" font-weight="700"
+                  fill="rgba(185,245,215,0.95)">+dle</text>
+            <path d="M 249 80.5 L 262 80.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="262" y="71" width="52" height="19" rx="5"
+                  fill="rgba(6,24,16,0.62)" stroke="rgba(60,195,150,0.32)" stroke-width=".7"/>
+            <text x="288" y="84" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8.5" font-weight="700"
+                  fill="rgba(165,238,202,0.95)"
+                  style="animation:word-fade 4s 1.3s infinite">cradle</text>
+
+            <!-- row 3: kin → kindle -->
+            <rect x="168" y="100" width="42" height="15" rx="4"
+                  fill="rgba(4,18,12,0.58)" stroke="rgba(55,185,142,0.26)" stroke-width=".7"/>
+            <text x="189" y="111.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8" font-weight="600"
+                  fill="rgba(140,225,188,0.9)"
+                  style="animation:word-fade 4s 1.6s infinite">kin</text>
+            <path d="M 212 107.5 L 223 107.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="225" y="101" width="22" height="13" rx="3"
+                  fill="rgba(18,65,44,0.62)" stroke="rgba(90,220,168,0.50)" stroke-width=".8"/>
+            <text x="236" y="110.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="7" font-weight="700"
+                  fill="rgba(185,245,215,0.95)">+dle</text>
+            <path d="M 249 107.5 L 262 107.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="262" y="98" width="52" height="19" rx="5"
+                  fill="rgba(6,24,16,0.62)" stroke="rgba(60,195,150,0.32)" stroke-width=".7"/>
+            <text x="288" y="111" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8.5" font-weight="700"
+                  fill="rgba(165,238,202,0.95)"
+                  style="animation:word-fade 4s 2.1s infinite">kindle</text>
+
+            <!-- row 4: dwin → dwindle -->
+            <rect x="168" y="127" width="42" height="15" rx="4"
+                  fill="rgba(4,18,12,0.58)" stroke="rgba(55,185,142,0.26)" stroke-width=".7"/>
+            <text x="189" y="138.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8" font-weight="600"
+                  fill="rgba(140,225,188,0.9)"
+                  style="animation:word-fade 4s 2.4s infinite">dwin</text>
+            <path d="M 212 134.5 L 223 134.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="225" y="128" width="22" height="13" rx="3"
+                  fill="rgba(18,65,44,0.62)" stroke="rgba(90,220,168,0.50)" stroke-width=".8"/>
+            <text x="236" y="137.5" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="7" font-weight="700"
+                  fill="rgba(185,245,215,0.95)">+dle</text>
+            <path d="M 249 134.5 L 262 134.5" fill="none"
+                  stroke="rgba(65,200,155,0.58)" stroke-width="1.2"
+                  marker-end="url(#dleArrow)"/>
+            <rect x="262" y="125" width="52" height="19" rx="5"
+                  fill="rgba(6,24,16,0.62)" stroke="rgba(60,195,150,0.32)" stroke-width=".7"/>
+            <text x="288" y="138" text-anchor="middle"
+                  font-family="Inter,sans-serif" font-size="8.5" font-weight="700"
+                  fill="rgba(165,238,202,0.95)"
+                  style="animation:word-fade 4s 2.9s infinite">dwindle</text>
+
+            <!-- ══════════════════════════════════
+                 MOTION BARS  (lower-right)
+                 ══════════════════════════════════ -->
+            <g transform="translate(262,158)">
+              <text x="0" y="0" font-family="Inter,sans-serif" font-size="6.5" font-weight="700"
+                    letter-spacing=".12em" fill="rgba(60,192,148,0.52)">GENTLE</text>
+              <rect x="0" y="5" width="72" height="4" rx="2" fill="rgba(4,18,12,0.55)"/>
+              <rect x="0" y="5" height="4" rx="2" fill="rgba(60,200,155,0.70)"
+                    style="--bw:72px;animation:bar-fill 2.5s .3s both ease-out;width:0"/>
+            </g>
+            <g transform="translate(262,172)">
+              <text x="0" y="0" font-family="Inter,sans-serif" font-size="6.5" font-weight="700"
+                    letter-spacing=".12em" fill="rgba(48,178,136,0.48)">REPEAT</text>
+              <rect x="0" y="5" width="72" height="4" rx="2" fill="rgba(4,18,12,0.55)"/>
+              <rect x="0" y="5" height="4" rx="2" fill="rgba(48,185,142,0.64)"
+                    style="--bw:60px;animation:bar-fill 2.5s .7s both ease-out;width:0"/>
+            </g>
+            <g transform="translate(262,186)">
+              <text x="0" y="0" font-family="Inter,sans-serif" font-size="6.5" font-weight="700"
+                    letter-spacing=".12em" fill="rgba(38,162,124,0.44)">DIMINISH</text>
+              <rect x="0" y="5" width="72" height="4" rx="2" fill="rgba(4,18,12,0.55)"/>
+              <rect x="0" y="5" height="4" rx="2" fill="rgba(38,168,128,0.58)"
+                    style="--bw:50px;animation:bar-fill 2.5s 1.1s both ease-out;width:0"/>
+            </g>
+
+            <!-- ══════════════════════════════════
+                 WORD CLOUD  (bottom)
+                 ══════════════════════════════════ -->
+            <text x="14"  y="207" font-family="Inter,sans-serif" font-size="8"
+                  font-weight="600" fill="rgba(50,182,138,0.28)" letter-spacing=".05em"
+                  style="animation:float-word 5.8s 0s ease-in-out infinite">bundle</text>
+            <text x="80"  y="215" font-family="Inter,sans-serif" font-size="7.5"
+                  font-weight="600" fill="rgba(62,196,150,0.24)" letter-spacing=".05em"
+                  style="animation:float-word 5.8s 1.1s ease-in-out infinite">cuddle</text>
+            <text x="144" y="208" font-family="Inter,sans-serif" font-size="8"
+                  font-weight="600" fill="rgba(75,208,160,0.26)" letter-spacing=".05em"
+                  style="animation:float-word 5.8s 2.2s ease-in-out infinite">paddle</text>
+            <text x="212" y="216" font-family="Inter,sans-serif" font-size="7.5"
+                  font-weight="600" fill="rgba(55,188,144,0.23)" letter-spacing=".05em"
+                  style="animation:float-word 5.8s 3.3s ease-in-out infinite">huddle</text>
+
+            <!-- ── +DLE big badge (top-right) ── -->
+            <g transform="translate(316,16)">
+              <rect x="0" y="0" width="46" height="22" rx="6"
+                    fill="rgba(12,52,34,0.66)" stroke="rgba(75,210,162,0.46)" stroke-width="1"/>
+              <text x="23" y="14.5" text-anchor="middle"
+                    font-family="Inter,sans-serif" font-size="11" font-weight="800"
+                    fill="rgba(175,242,210,0.95)" letter-spacing=".04em">‑dle</text>
+            </g>
+
+            <!-- registration corners -->
+            <path d="M 18 10 L 10 10 L 10 18"    fill="none"
+                  stroke="rgba(60,195,150,0.23)" stroke-width="1"/>
+            <path d="M 362 10 L 370 10 L 370 18"  fill="none"
+                  stroke="rgba(60,195,150,0.23)" stroke-width="1"/>
+            <path d="M 18 230 L 10 230 L 10 222"  fill="none"
+                  stroke="rgba(60,195,150,0.23)" stroke-width="1"/>
+            <path d="M 362 230 L 370 230 L 370 222" fill="none"
+                  stroke="rgba(60,195,150,0.23)" stroke-width="1"/>
+
+          </g>
+        </svg>
+      </div>
+
+      <!-- ripple particles -->
+      <div id="rippleContainer"></div>
+
+      <!-- letter tag -->
+      <div class="letter-tag">‑dle<span class="dle-dot"></span></div>
+
+      <!-- hover meanings overlay -->
+      <div class="card-meanings">
+        <div class="mean-item"><span>🌀</span><span>Gentle action</span></div>
+        <div class="mean-item"><span>🔁</span><span>Repeated motion</span></div>
+        <div class="mean-item"><span>🌱</span><span>Diminutive verb</span></div>
+        <div class="mean-item"><span>✦</span><span>Frequentative</span></div>
+      </div>
+
+      <!-- card text content -->
+      <div class="card-content">
+        <div class="name-main">dle<span class="name-dot">.</span>kr</div>
+        <div class="name-sub">the gentle action suffix · repeated &amp; diminutive</div>
+        <div class="meta-row">suffix — frequentative</div>
+        <div class="badge"><span>🌀</span><span>‑DLE</span></div>
+        <div class="domain-url">dle<span class="domain-tld">.kr</span></div>
+      </div>
+
+    </div><!-- .card -->
+  </div><!-- .card-wrap -->
+</div><!-- .scene -->
+
+<script>
+(function(){
+  const wrap     = document.getElementById('cardWrap');
+  const holo     = document.getElementById('cardHolo');
+  const spot     = document.getElementById('cardSpot');
+  const rippleCt = document.getElementById('rippleContainer');
+
+  let tx=0, ty=0, cx=0, cy=0;
+  const LERP=0.08, MAX_Y=13, MAX_X=10;
+  let raf;
+
+  function lerp(a,b,t){ return a+(b-a)*t }
+
+  function tick(){
+    cx=lerp(cx,tx,LERP);
+    cy=lerp(cy,ty,LERP);
+    wrap.style.transform=
+      `rotateY(${cx}deg) rotateX(${cy}deg) scale(1.026)`;
+    raf=requestAnimationFrame(tick);
+  }
+
+  wrap.addEventListener('mouseenter',()=>{
+    wrap.classList.remove('is-idle');
+    wrap.style.animation='none';
+    cancelAnimationFrame(raf);
+    tick();
+  });
+
+  wrap.addEventListener('mousemove',e=>{
+    const r  = wrap.getBoundingClientRect();
+    const nx = ((e.clientX-r.left)/r.width  -.5)*2;
+    const ny = ((e.clientY-r.top) /r.height -.5)*2;
+    tx =  nx*MAX_Y;
+    ty = -ny*MAX_X;
+    const px=(e.clientX-r.left)/r.width *100;
+    const py=(e.clientY-r.top) /r.height*100;
+    holo.style.setProperty('--mx',`${px}%`);
+    holo.style.setProperty('--my',`${py}%`);
+    holo.style.setProperty('--r', `${nx*180}deg`);
+    spot.style.setProperty('--mx',`${px}%`);
+    spot.style.setProperty('--my',`${py}%`);
+  });
+
+  wrap.addEventListener('mouseleave',()=>{
+    tx=0; ty=0;
+    setTimeout(()=>{
+      cancelAnimationFrame(raf);
+      wrap.style.transform='';
+      wrap.style.animation='float-idle 10s ease-in-out infinite';
+    },350);
+  });
+
+  /* ── ripple ring particles ── */
+  const RIPPLES=[
+    {x: 6,  s:14, c:'rgba(65,205,158,0.55)', dur: 8.6, del:0.0, dx:' 8px'},
+    {x:14,  s:10, c:'rgba(50,185,142,0.48)', dur:10.2, del:0.8, dx:'-12px'},
+    {x:24,  s:16, c:'rgba(80,218,165,0.52)', dur: 7.5, del:1.5, dx:' 15px'},
+    {x:34,  s:12, c:'rgba(42,172,132,0.45)', dur:11.4, del:2.2, dx:' -7px'},
+    {x:45,  s:15, c:'rgba(72,208,160,0.50)', dur: 9.0, del:0.5, dx:' 11px'},
+    {x:54,  s:11, c:'rgba(58,194,148,0.46)', dur:10.8, del:1.9, dx:'-14px'},
+    {x:63,  s:17, c:'rgba(86,222,170,0.52)', dur: 7.8, del:3.1, dx:' 18px'},
+    {x:72,  s:10, c:'rgba(45,178,136,0.44)', dur:10.0, del:1.2, dx:' -9px'},
+    {x:81,  s:14, c:'rgba(76,212,162,0.50)', dur: 8.4, del:2.6, dx:' 14px'},
+    {x:89,  s:12, c:'rgba(54,190,145,0.47)', dur:11.0, del:1.4, dx:'-16px'},
+    {x:95,  s:13, c:'rgba(68,206,157,0.50)', dur: 9.2, del:3.7, dx:' 10px'},
+    {x:48,  s:11, c:'rgba(60,198,152,0.48)', dur: 9.6, del:4.4, dx:'-11px'},
+  ];
+
+  RIPPLES.forEach(p=>{
+    const d=document.createElement('div');
+    d.className='ripple';
+    d.style.cssText=`
+      left:${p.x}%;
+      bottom:${-(p.s)}px;
+      width:${p.s}px;
+      height:${p.s}px;
+      border-color:${p.c};
+      box-shadow:0 0 ${p.s*.8}px ${p.c};
+      --dx:${p.dx};
+      animation-duration:${p.dur}s;
+      animation-delay:${p.del}s;
+    `;
+    rippleCt.appendChild(d);
+  });
+
+})();
+</script>
+</body>
+</html>
