@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>‑dle | dle.kr – 영어 접미사 ‑dle의 모든 것</title>
+<meta name="description" content="영어 접미사 ‑dle: handle, kindle, fiddle, paddle, bundle 등 반복·소규모·도구적 동작을 표현하는 접미사의 모든 것을 탐구합니다." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@300;400;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #020308;
+    --teal:    #14b8a6;
+    --cyan:    #06b6d4;
+    --emerald: #10b981;
+    --lime:    #84cc16;
+    --sky:     #38bdf8;
+    --gold:    #f59e0b;
+    --surface: rgba(255,255,255,0.04);
+    --border:  rgba(255,255,255,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--bg);
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* top stripe */
+  .top-stripe {
+    height: 3px;
+    background: linear-gradient(90deg,var(--teal),var(--cyan),var(--emerald),var(--lime),var(--sky),var(--gold));
+    background-size: 300% 100%;
+    animation: stripeMove 4s linear infinite;
+  }
+  @keyframes stripeMove { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
+
+  /* bg layers */
+  .bg-radial {
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(ellipse 70% 50% at 15% 25%, rgba(20,184,166,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 85% 75%, rgba(6,182,212,0.10) 0%, transparent 60%);
+  }
+  #particles-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+  /* glass */
+  .glass {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+  }
+
+  /* neon */
+  .neon-teal    { color:var(--teal);    text-shadow:0 0 12px var(--teal),    0 0 30px rgba(20,184,166,0.4); }
+  .neon-cyan    { color:var(--cyan);    text-shadow:0 0 12px var(--cyan),    0 0 30px rgba(6,182,212,0.4); }
+  .neon-emerald { color:var(--emerald); text-shadow:0 0 12px var(--emerald), 0 0 30px rgba(16,185,129,0.4); }
+  .neon-gold    { color:var(--gold);    text-shadow:0 0 12px var(--gold),    0 0 30px rgba(245,158,11,0.4); }
+
+  /* reveal */
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease; }
+  .revealed { opacity:1; transform:translateY(0); }
+
+  /* avatar ring */
+  .avatar-ring {
+    border-radius:9999px; padding:4px;
+    background: conic-gradient(var(--teal),var(--cyan),var(--emerald),var(--lime),var(--teal));
+    animation: spin 6s linear infinite; display:inline-block;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .avatar-ring img { border-radius:9999px; display:block; }
+
+  /* meter */
+  .meter-bar  { height:8px; border-radius:4px; background:rgba(255,255,255,0.08); overflow:hidden; }
+  .meter-fill { height:100%; border-radius:4px; width:0; transition:width 1.4s cubic-bezier(.4,0,.2,1); }
+
+  /* pill */
+  .pill {
+    display:inline-block; padding:4px 14px; border-radius:999px;
+    font-size:.78rem; font-weight:600;
+    border:1px solid rgba(255,255,255,0.12);
+    background:rgba(255,255,255,0.05);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .pill:hover { transform:translateY(-2px); box-shadow:0 4px 16px rgba(20,184,166,0.3); }
+
+  /* progress bar */
+  .prog-track { background:rgba(255,255,255,0.07); border-radius:4px; height:6px; overflow:hidden; }
+  .prog-fill  { height:100%; border-radius:4px; width:0; transition:width 1.4s ease; }
+
+  /* code block */
+  .code-block {
+    background:rgba(0,0,0,0.55); border:1px solid rgba(20,184,166,0.25);
+    border-radius:.75rem; padding:1.25rem;
+    font-family:'Courier New',monospace; font-size:.8rem; line-height:1.7; overflow-x:auto;
+  }
+
+  /* timeline dot */
+  .tl-dot {
+    width:14px; height:14px; border-radius:50%;
+    background:var(--teal); box-shadow:0 0 8px var(--teal);
+    flex-shrink:0; margin-top:4px;
+  }
+
+  /* carousel */
+  .carousel-track { display:flex; transition:transform .5s ease; height:100%; }
+  .carousel-slide { min-width:100%; position:relative; }
+  .carousel-slide img { width:100%; height:100%; object-fit:cover; }
+
+  /* vinyl */
+  .vinyl {
+    width:80px; height:80px; border-radius:50%;
+    background:conic-gradient(#0d1f1f 0deg 60deg,#0a3030 60deg 120deg,#0d1f1f 120deg 180deg,#0a3030 180deg 240deg,#0d1f1f 240deg 300deg,#0a3030 300deg 360deg);
+    box-shadow:0 0 20px rgba(20,184,166,0.4); flex-shrink:0;
+  }
+  .vinyl.spinning { animation:vinylSpin 2s linear infinite; }
+  @keyframes vinylSpin { to { transform:rotate(360deg); } }
+
+  /* faq */
+  .faq-answer { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .faq-answer.open { max-height:200px; }
+
+  /* scroll to top */
+  #scrollTop {
+    position:fixed; bottom:1.5rem; right:1.5rem; z-index:9999;
+    width:44px; height:44px; border-radius:50%; border:none; cursor:pointer;
+    background:linear-gradient(135deg,var(--teal),var(--cyan));
+    color:#fff; font-size:1.2rem; display:none;
+    align-items:center; justify-content:center;
+    box-shadow:0 4px 16px rgba(20,184,166,0.4);
+    transition:transform .2s;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  /* kpi */
+  .kpi-card {
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:1rem; padding:1.5rem; text-align:center;
+  }
+
+  /* transform arrow */
+  .t-arrow { color:var(--teal); font-weight:700; margin:0 .5rem; }
+
+  section { position:relative; z-index:1; }
+</style>
+</head>
+<body>
+<div class="top-stripe"></div>
+<div class="bg-radial"></div>
+<canvas id="particles-canvas"></canvas>
+
+<!-- ══════════════════════════════════════════
+     1. HERO
+══════════════════════════════════════════ -->
+<section id="hero" class="min-h-screen flex flex-col items-center justify-center px-4 py-20 text-center">
+  <div class="avatar-ring mb-6">
+    <img src="https://api.dicebear.com/9.x/shapes/svg?seed=dle" width="110" height="110" alt="dle avatar" />
+  </div>
+
+  <h1 class="font-['Righteous'] text-6xl md:text-8xl neon-teal mb-2">‑dle</h1>
+  <p class="text-lg md:text-xl text-slate-400 font-['Noto_Serif_KR'] mb-6">영어 접미사 ‑dle 의 모든 것 · dle.kr</p>
+
+  <div class="glass max-w-xl w-full p-6 mb-8 text-left">
+    <h2 class="neon-cyan font-bold text-sm uppercase tracking-widest mb-4">Core Meaning</h2>
+    <ul class="space-y-2 text-slate-300 text-sm">
+      <li>🔥 <strong class="text-white">반복·지속 동작</strong> — 잦고 섬세한 반복 행위를 표현 (fiddle, huddle, paddle)</li>
+      <li>🛠️ <strong class="text-white">도구·소규모 행위</strong> — 손으로 다루거나 조작하는 행위 (handle, kindle, bundle)</li>
+      <li>🌱 <strong class="text-white">축소·부드러움</strong> — 원래 어근보다 작거나 부드러운 뉘앙스 (needle, puddle, riddle)</li>
+    </ul>
+  </div>
+
+  <!-- Letter Cards -->
+  <div class="flex gap-4 mb-8">
+    <div class="glass w-16 h-16 flex items-center justify-center text-2xl font-bold neon-teal    rounded-xl">d</div>
+    <div class="glass w-16 h-16 flex items-center justify-center text-2xl font-bold neon-cyan    rounded-xl">l</div>
+    <div class="glass w-16 h-16 flex items-center justify-center text-2xl font-bold neon-emerald rounded-xl">e</div>
+  </div>
+
+  <!-- Doodle Meter -->
+  <div class="glass max-w-xs w-full p-4">
+    <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">Doodle Meter</p>
+    <div class="meter-bar mb-2">
+      <div id="heroMeterFill" class="meter-fill" style="background:linear-gradient(90deg,var(--teal),var(--cyan));"></div>
+    </div>
+    <p class="text-right text-xs text-slate-400"><span id="heroMeterVal">0</span> / 20</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     2. KPI BOARD
+══════════════════════════════════════════ -->
+<section id="kpi" class="py-16 px-4 reveal">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-center text-2xl font-bold mb-10 neon-teal font-['Righteous']">‑dle 숫자로 보기</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="kpi-card">
+        <p class="text-4xl font-bold neon-teal mb-2"><span id="kpi1">0</span>+</p>
+        <p class="text-slate-400 text-sm">‑dle 파생 어휘 수</p>
+      </div>
+      <div class="kpi-card">
+        <p class="text-4xl font-bold neon-cyan mb-2"><span id="kpi2">0</span> yr</p>
+        <p class="text-slate-400 text-sm">년 게르만어 역사</p>
+      </div>
+      <div class="kpi-card">
+        <p class="text-4xl font-bold neon-gold mb-2">∞</p>
+        <p class="text-slate-400 text-sm">Doodle &amp; Handle</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     3. ANNOUNCEMENT
+══════════════════════════════════════════ -->
+<section class="py-6 px-4 reveal">
+  <div class="max-w-2xl mx-auto glass p-5 text-center">
+    <p class="text-sm text-slate-400 mb-1 uppercase tracking-widest">공지</p>
+    <p class="text-white font-semibold mb-3">‑dle 접미사 사전 &amp; 학습 플랫폼 오픈!</p>
+    <a href="https://dle.kr" target="_blank"
+       class="inline-block px-6 py-2 rounded-full text-sm font-bold text-white"
+       style="background:linear-gradient(135deg,var(--teal),var(--cyan));">
+      dle.kr 방문하기 →
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     4. SOCIAL LINKS
+══════════════════════════════════════════ -->
+<section class="py-10 px-4 reveal">
+  <div class="max-w-md mx-auto">
+    <h2 class="text-center text-lg font-bold mb-6 text-slate-300">Follow ‑dle</h2>
+    <div class="flex flex-col gap-3">
+      <a href="https://instagram.com/dle.kr" target="_blank"
+         class="glass flex items-center gap-3 px-5 py-3 rounded-full hover:border-pink-500 transition-colors">
+        <span class="text-xl">📸</span><span class="text-sm font-medium">Instagram · @dle.kr</span>
+      </a>
+      <a href="https://youtube.com/@dlekr" target="_blank"
+         class="glass flex items-center gap-3 px-5 py-3 rounded-full hover:border-red-500 transition-colors">
+        <span class="text-xl">▶️</span><span class="text-sm font-medium">YouTube · @dlekr</span>
+      </a>
+      <a href="https://x.com/dlekr" target="_blank"
+         class="glass flex items-center gap-3 px-5 py-3 rounded-full hover:border-sky-400 transition-colors">
+        <span class="text-xl">🐦</span><span class="text-sm font-medium">X · @dlekr</span>
+      </a>
+      <a href="https://github.com/dlekr" target="_blank"
+         class="glass flex items-center gap-3 px-5 py-3 rounded-full hover:border-slate-400 transition-colors">
+        <span class="text-xl">🐙</span><span class="text-sm font-medium">GitHub · dlekr</span>
+      </a>
+      <a href="mailto:hello@dle.kr"
+         class="glass flex items-center gap-3 px-5 py-3 rounded-full hover:border-yellow-400 transition-colors">
+        <span class="text-xl">✉️</span><span class="text-sm font-medium">Email · hello@dle.kr</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     5. WORD EXAMPLES
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-2xl font-bold mb-8 neon-cyan font-['Righteous']">‑dle 단어 모음</h2>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <span class="pill" style="border-color:var(--teal);   color:var(--teal);">handle</span>
+      <span class="pill" style="border-color:var(--cyan);   color:var(--cyan);">kindle</span>
+      <span class="pill" style="border-color:var(--emerald);color:var(--emerald);">fiddle</span>
+      <span class="pill" style="border-color:var(--lime);   color:var(--lime);">paddle</span>
+      <span class="pill" style="border-color:var(--sky);    color:var(--sky);">bundle</span>
+      <span class="pill" style="border-color:var(--gold);   color:var(--gold);">needle</span>
+      <span class="pill" style="border-color:var(--teal);   color:var(--teal);">puddle</span>
+      <span class="pill" style="border-color:var(--cyan);   color:var(--cyan);">riddle</span>
+      <span class="pill" style="border-color:var(--emerald);color:var(--emerald);">huddle</span>
+      <span class="pill" style="border-color:var(--lime);   color:var(--lime);">doodle</span>
+      <span class="pill" style="border-color:var(--sky);    color:var(--sky);">cradle</span>
+      <span class="pill" style="border-color:var(--gold);   color:var(--gold);">straddle</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     6. DOODLE SHOWCASE (Transformations)
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-8 text-center neon-teal font-['Righteous']">‑dle 변환 쇼케이스</h2>
+    <div class="glass p-6 space-y-4">
+      <div class="flex items-center flex-wrap gap-2">
+        <span class="pill">hand + le</span>
+        <span class="t-arrow">→</span>
+        <span class="font-bold text-white">handle</span>
+        <span class="text-slate-400 text-sm ml-2">손으로 다루다 / 조작·관리</span>
+      </div>
+      <div class="flex items-center flex-wrap gap-2">
+        <span class="pill">kind + le</span>
+        <span class="t-arrow">→</span>
+        <span class="font-bold text-white">kindle</span>
+        <span class="text-slate-400 text-sm ml-2">불을 지피다 / 자극·점화</span>
+      </div>
+      <div class="flex items-center flex-wrap gap-2">
+        <span class="pill">fid + dle</span>
+        <span class="t-arrow">→</span>
+        <span class="font-bold text-white">fiddle</span>
+        <span class="text-slate-400 text-sm ml-2">만지작거리다 / 반복 소동작</span>
+      </div>
+      <div class="flex items-center flex-wrap gap-2">
+        <span class="pill">pad + dle</span>
+        <span class="t-arrow">→</span>
+        <span class="font-bold text-white">paddle</span>
+        <span class="text-slate-400 text-sm ml-2">노를 젓다 / 반복 추진 동작</span>
+      </div>
+      <div class="flex items-center flex-wrap gap-2">
+        <span class="pill">bun + dle</span>
+        <span class="t-arrow">→</span>
+        <span class="font-bold text-white">bundle</span>
+        <span class="text-slate-400 text-sm ml-2">묶음 / 소규모 집합</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     7. LINGUISTIC TRAITS
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-8 text-center neon-cyan font-['Righteous']">언어적 특성</h2>
+    <div class="glass p-6 space-y-5">
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>단어 형성력</span><span class="neon-teal">97%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-w="97" style="background:var(--teal);"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>구어 빈도</span><span class="neon-cyan">95%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-w="95" style="background:var(--cyan);"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>역사적 지속성</span><span class="neon-emerald">98%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-w="98" style="background:var(--emerald);"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between text-sm mb-1"><span>축소·친근 뉘앙스</span><span class="neon-gold">96%</span></div>
+        <div class="prog-track"><div class="prog-fill" data-w="96" style="background:var(--gold);"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     8. SUFFIX ROLES
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold mb-8 text-center neon-gold font-['Righteous']">‑dle 역할 분류</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass p-4 text-center">
+        <p class="text-2xl mb-2">🔄</p>
+        <p class="font-bold neon-teal mb-1">반복 동사</p>
+        <p class="text-slate-400 text-xs">fiddle, paddle, huddle — 잦고 섬세한 반복 동작</p>
+      </div>
+      <div class="glass p-4 text-center">
+        <p class="text-2xl mb-2">🛠️</p>
+        <p class="font-bold neon-cyan mb-1">도구·조작 동사</p>
+        <p class="text-slate-400 text-xs">handle, kindle — 도구를 사용하거나 조작하는 행위</p>
+      </div>
+      <div class="glass p-4 text-center">
+        <p class="text-2xl mb-2">📦</p>
+        <p class="font-bold neon-emerald mb-1">집합·묶음 명사</p>
+        <p class="text-slate-400 text-xs">bundle, needle — 작은 무리나 도구를 지칭</p>
+      </div>
+      <div class="glass p-4 text-center">
+        <p class="text-2xl mb-2">🧩</p>
+        <p class="font-bold neon-gold mb-1">수수께끼·패턴</p>
+        <p class="text-slate-400 text-xs">riddle, doodle — 불확실·유희적 행위나 형태</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     9. CODE BLOCK
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center neon-teal font-['Righteous']">Suffix Object</h2>
+    <div class="code-block">
+<span style="color:#f59e0b;">const</span> <span style="color:#a78bfa;">suffix</span> = {<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">name</span>:       <span style="color:#fca5a5;">"‑dle"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">origin</span>:     <span style="color:#fca5a5;">"Proto-Germanic / Old English ‑ol / ‑el"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">forms</span>:      [<span style="color:#fca5a5;">"‑dle"</span>, <span style="color:#fca5a5;">"‑tle"</span>, <span style="color:#fca5a5;">"‑le"</span>],<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">meanings</span>:   [<span style="color:#fca5a5;">"반복동작"</span>, <span style="color:#fca5a5;">"도구조작"</span>, <span style="color:#fca5a5;">"축소"</span>, <span style="color:#fca5a5;">"집합"</span>],<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">wordClass</span>:  [<span style="color:#fca5a5;">"verb"</span>, <span style="color:#fca5a5;">"noun"</span>],<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">examples</span>:   [<span style="color:#fca5a5;">"handle"</span>, <span style="color:#fca5a5;">"kindle"</span>, <span style="color:#fca5a5;">"fiddle"</span>, <span style="color:#fca5a5;">"bundle"</span>],<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">derivatives</span>: <span style="color:#f9a8d4;">1400</span>,<br/>
+&nbsp;&nbsp;<span style="color:#86efac;">domain</span>:     <span style="color:#fca5a5;">"https://dle.kr"</span><br/>
+};<br/>
+<span style="color:#94a3b8;">// Doodle · Diddle · Dawdle — ‑dle 이 품은 세 가지 리듬</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     10. ETYMOLOGY TIMELINE
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-8 text-center neon-cyan font-['Righteous']">어원 타임라인</h2>
+    <div class="space-y-6 pl-2">
+      <div class="flex gap-4">
+        <div class="tl-dot"></div>
+        <div>
+          <p class="font-bold text-white">Proto-Germanic</p>
+          <p class="text-slate-400 text-sm">*-ilaz / *-ulaz — 반복·소규모 행위를 나타내는 축소 접미사의 원형</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="tl-dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan);"></div>
+        <div>
+          <p class="font-bold text-white">Old English (~700 AD)</p>
+          <p class="text-slate-400 text-sm">‑ol / ‑el 형태로 등장 — nǣdl(needle), handlian(handle) 등 도구·동작 어휘 형성</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="tl-dot" style="background:var(--emerald);box-shadow:0 0 8px var(--emerald);"></div>
+        <div>
+          <p class="font-bold text-white">Middle English (~1200 AD)</p>
+          <p class="text-slate-400 text-sm">‑del / ‑dle 으로 수렴 — fidel, bundel 등 철자 통일 과정</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="tl-dot" style="background:var(--gold);box-shadow:0 0 8px var(--gold);"></div>
+        <div>
+          <p class="font-bold text-white">Early Modern English (~1500 AD)</p>
+          <p class="text-slate-400 text-sm">handle, kindle, riddle, paddle — 철자 표준화 완성, 어휘 확장</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="tl-dot" style="background:var(--lime);box-shadow:0 0 8px var(--lime);"></div>
+        <div>
+          <p class="font-bold text-white">Modern English (18c ~ 현재)</p>
+          <p class="text-slate-400 text-sm">doodle, straddle, dawdle 등 유희적·의성어적 파생어 대거 등장</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     11. QUOTES
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="glass p-6">
+      <p class="text-slate-300 italic text-sm mb-4">"Every great fire begins as a kindle — small acts, repeated, change the world."</p>
+      <p class="neon-teal text-xs font-bold">— 언어학 격언</p>
+    </div>
+    <div class="glass p-6">
+      <p class="text-slate-300 italic text-sm mb-4">"To handle life well, you must first learn to handle small things — that is the ‑dle way."</p>
+      <p class="neon-cyan text-xs font-bold">— dle.kr 어원 노트</p>
+    </div>
+    <div class="glass p-6">
+      <p class="text-slate-300 italic text-sm mb-4">"A riddle wrapped in a mystery inside an enigma — ‑dle 은 언어 속 수수께끼다."</p>
+      <p class="neon-gold text-xs font-bold">— Winston Churchill (변형)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     12. FEATURED VIDEO
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center neon-teal font-['Righteous']">Featured Video</h2>
+    <div class="glass p-3 rounded-2xl" style="aspect-ratio:16/9;">
+      <iframe class="w-full h-full rounded-xl"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="‑dle 접미사 해설"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     13. PLAYLIST
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center neon-cyan font-['Righteous']">Playlist</h2>
+    <div class="space-y-3">
+      <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank"
+         class="glass flex gap-4 p-3 rounded-xl hover:border-teal-400 transition-colors">
+        <img src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=80&h=60&fit=crop"
+             class="rounded-lg w-20 h-14 object-cover" alt="ep1" />
+        <div>
+          <p class="font-semibold text-white text-sm">EP 01 · Handle &amp; Kindle</p>
+          <p class="text-slate-400 text-xs mt-1">도구와 불꽃 — 조작 동사 ‑dle 탐구</p>
+        </div>
+      </a>
+      <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank"
+         class="glass flex gap-4 p-3 rounded-xl hover:border-cyan-400 transition-colors">
+        <img src="https://images.unsplash.com/photo-1471879832106-c7ab9e0cee23?w=80&h=60&fit=crop"
+             class="rounded-lg w-20 h-14 object-cover" alt="ep2" />
+        <div>
+          <p class="font-semibold text-white text-sm">EP 02 · Fiddle &amp; Doodle</p>
+          <p class="text-slate-400 text-xs mt-1">유희와 반복 — 소규모 동작의 세계</p>
+        </div>
+      </a>
+      <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank"
+         class="glass flex gap-4 p-3 rounded-xl hover:border-emerald-400 transition-colors">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=60&fit=crop"
+             class="rounded-lg w-20 h-14 object-cover" alt="ep3" />
+        <div>
+          <p class="font-semibold text-white text-sm">EP 03 · Riddle &amp; Bundle</p>
+          <p class="text-slate-400 text-xs mt-1">수수께끼와 묶음 — 명사형 ‑dle 의 역사</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     14. IMAGE CAROUSEL
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center neon-gold font-['Righteous']">‑dle 갤러리</h2>
+    <div class="glass p-3 rounded-2xl">
+      <div class="relative overflow-hidden rounded-xl" style="height:280px;">
+        <div id="carouselTrack" class="carousel-track">
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1504971116797-24a8e5b3e7b1?w=800&h=280&fit=crop" alt="handle" />
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80">
+              <p class="text-white text-sm font-semibold">Handle — 손으로 다루는 기술</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=280&fit=crop" alt="kindle" />
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80">
+              <p class="text-white text-sm font-semibold">Kindle — 불꽃을 피우다</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&h=280&fit=crop" alt="paddle" />
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80">
+              <p class="text-white text-sm font-semibold">Paddle — 반복의 추진력</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&h=280&fit=crop" alt="doodle" />
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80">
+              <p class="text-white text-sm font-semibold">Doodle — 자유로운 낙서</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&h=280&fit=crop" alt="riddle" />
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80">
+              <p class="text-white text-sm font-semibold">Riddle — 풀리지 않는 수수께끼</p>
+            </div>
+          </div>
+        </div>
+        <button onclick="moveCarousel(-1)"
+          class="absolute left-2 top-1/2 -translate-y-1/2 glass w-8 h-8 rounded-full flex items-center justify-center text-sm hover:scale-110 transition">‹</button>
+        <button onclick="moveCarousel(1)"
+          class="absolute right-2 top-1/2 -translate-y-1/2 glass w-8 h-8 rounded-full flex items-center justify-center text-sm hover:scale-110 transition">›</button>
+      </div>
+      <div id="carouselDots" class="flex justify-center gap-2 mt-3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     15. SPOTLIGHT
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <div class="relative rounded-2xl overflow-hidden glass" style="min-height:200px;">
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&h=200&fit=crop"
+           class="w-full object-cover opacity-30" style="height:200px;" alt="spotlight" />
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+        <h2 class="font-['Righteous'] text-3xl neon-teal mb-2">Doodle · Diddle · Dawdle</h2>
+        <p class="text-slate-300 text-sm">‑dle 이 담긴 모든 단어에는 손끝의 감각과 반복의 리듬이 있다</p>
+        <a href="https://dle.kr" target="_blank"
+           class="mt-4 px-6 py-2 rounded-full text-sm font-bold text-white"
+           style="background:linear-gradient(135deg,var(--teal),var(--cyan));">
+          더 알아보기 →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     16. MUSIC PLAYER
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center neon-cyan font-['Righteous']">‑dle Sound Track</h2>
+    <div class="glass p-6">
+      <div class="flex items-center gap-5 mb-5">
+        <div id="vinyl" class="vinyl"></div>
+        <div class="flex-1 min-w-0">
+          <p id="trackTitle"  class="font-bold text-white truncate">Handle It</p>
+          <p id="trackArtist" class="text-slate-400 text-sm">dle.kr OST</p>
+          <div class="meter-bar mt-3">
+            <div id="musicProgress" class="meter-fill"
+                 style="background:linear-gradient(90deg,var(--teal),var(--cyan));width:0%;"></div>
+          </div>
+          <div class="flex justify-between text-xs text-slate-500 mt-1">
+            <span id="currentTime">0:00</span><span id="totalTime">0:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center gap-4 mb-5">
+        <button onclick="prevTrack()"
+          class="glass w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition">⏮</button>
+        <button id="playBtn" onclick="togglePlay()"
+          class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white hover:scale-110 transition"
+          style="background:linear-gradient(135deg,var(--teal),var(--cyan));">▶</button>
+        <button onclick="nextTrack()"
+          class="glass w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition">⏭</button>
+      </div>
+      <div class="space-y-2" id="trackList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     17. PROJECTS
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold mb-8 text-center neon-gold font-['Righteous']">‑dle 프로젝트</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass p-4">
+        <p class="text-xl mb-2">📚</p>
+        <p class="font-bold text-white text-sm mb-1">‑dle Dictionary</p>
+        <p class="text-slate-400 text-xs mb-3">1,400+ ‑dle 단어 완전 수록</p>
+        <span class="pill text-xs" style="color:var(--teal);border-color:var(--teal);">Live</span>
+      </div>
+      <div class="glass p-4">
+        <p class="text-xl mb-2">🔬</p>
+        <p class="font-bold text-white text-sm mb-1">Doodle Lab</p>
+        <p class="text-slate-400 text-xs mb-3">반복·도구 패턴 시각화 도구</p>
+        <span class="pill text-xs" style="color:var(--gold);border-color:var(--gold);">Beta</span>
+      </div>
+      <div class="glass p-4">
+        <p class="text-xl mb-2">🎯</p>
+        <p class="font-bold text-white text-sm mb-1">‑dle Quest</p>
+        <p class="text-slate-400 text-xs mb-3">어휘 확장 게임형 학습</p>
+        <span class="pill text-xs" style="color:var(--cyan);border-color:var(--cyan);">Dev</span>
+      </div>
+      <div class="glass p-4">
+        <p class="text-xl mb-2">🤖</p>
+        <p class="font-bold text-white text-sm mb-1">‑dle AI Tutor</p>
+        <p class="text-slate-400 text-xs mb-3">AI 기반 어원 학습 튜터</p>
+        <span class="pill text-xs" style="color:var(--sky);border-color:var(--sky);">Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     18. RECENT POSTS
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center neon-teal font-['Righteous']">최근 포스트</h2>
+    <div class="space-y-3">
+      <div class="glass p-4 flex gap-4 items-start">
+        <span class="neon-teal text-lg">🛠️</span>
+        <div>
+          <p class="font-semibold text-white text-sm">handle vs. fiddle — 조작과 반복의 미묘한 차이</p>
+          <p class="text-slate-500 text-xs mt-1">2025 · 12 · 18</p>
+        </div>
+      </div>
+      <div class="glass p-4 flex gap-4 items-start">
+        <span class="neon-cyan text-lg">🔥</span>
+        <div>
+          <p class="font-semibold text-white text-sm">kindle 어원 — 불씨에서 전자책까지</p>
+          <p class="text-slate-500 text-xs mt-1">2025 · 12 · 05</p>
+        </div>
+      </div>
+      <div class="glass p-4 flex gap-4 items-start">
+        <span class="neon-gold text-lg">🧩</span>
+        <div>
+          <p class="font-semibold text-white text-sm">doodle &amp; dawdle — 시간을 낭비하는 두 가지 방법</p>
+          <p class="text-slate-500 text-xs mt-1">2025 · 11 · 22</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     19. FAQ
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center neon-cyan font-['Righteous']">자주 묻는 질문</h2>
+    <div class="space-y-3">
+      <div class="glass p-4 faq-item">
+        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+          <p class="font-semibold text-sm">‑dle 과 ‑tle 은 같은 접미사인가요?</p>
+          <span class="faq-icon neon-teal text-lg">+</span>
+        </div>
+        <div class="faq-answer mt-3 text-slate-400 text-sm">
+          어원적으로 밀접하게 연관되어 있습니다. 둘 다 Proto-Germanic의 반복·축소 접미사 *-ilaz에서 유래했으며, 앞 자음에 따라 ‑dle(fiddle) 또는 ‑tle(little, settle)로 분화되었습니다.
+        </div>
+      </div>
+      <div class="glass p-4 faq-item">
+        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+          <p class="font-semibold text-sm">‑dle 단어를 효율적으로 외우는 방법은?</p>
+          <span class="faq-icon neon-cyan text-lg">+</span>
+        </div>
+        <div class="faq-answer mt-3 text-slate-400 text-sm">
+          의미군으로 묶어 학습하세요. '도구·조작' 그룹(handle, kindle), '반복 동작' 그룹(fiddle, paddle, huddle), '명사·수수께끼' 그룹(riddle, bundle, needle)으로 나누면 암기가 쉬워집니다.
+        </div>
+      </div>
+      <div class="glass p-4 faq-item">
+        <div class="flex justify-between items-center cursor-pointer faq-toggle">
+          <p class="font-semibold text-sm">dle.kr 에서 어떤 콘텐츠를 제공하나요?</p>
+          <span class="faq-icon neon-gold text-lg">+</span>
+        </div>
+        <div class="faq-answer mt-3 text-slate-400 text-sm">
+          ‑dle 계열 단어의 어원, 예문, 발음, 파생어를 체계적으로 정리한 사전과 함께 반복 동작 패턴 시각화 도구, 학습 게임, AI 어원 튜터 서비스를 제공합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     20. NEWSLETTER + CONTACT
+══════════════════════════════════════════ -->
+<section class="py-12 px-4 reveal">
+  <div class="max-w-3xl mx-auto space-y-8">
+    <div class="glass p-6">
+      <h2 class="text-xl font-bold mb-1 neon-teal font-['Righteous']">뉴스레터 구독</h2>
+      <p class="text-slate-400 text-sm mb-4">‑dle 어휘 업데이트를 매주 받아보세요</p>
+      <div class="flex gap-2">
+        <input id="nlEmail" type="email" placeholder="your@email.com"
+          class="flex-1 bg-black/30 border border-white/10 rounded-full px-4 py-2 text-sm outline-none focus:border-teal-400 transition" />
+        <button onclick="subscribeNL()"
+          class="px-5 py-2 rounded-full text-sm font-bold text-white"
+          style="background:linear-gradient(135deg,var(--teal),var(--cyan));">구독</button>
+      </div>
+      <p id="nlMsg" class="text-xs mt-2 hidden"></p>
+    </div>
+    <div class="glass p-6">
+      <h2 class="text-xl font-bold mb-4 neon-cyan font-['Righteous']">문의하기</h2>
+      <div class="space-y-3">
+        <input id="ctName" type="text" placeholder="이름"
+          class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-teal-400 transition" />
+        <input id="ctEmail" type="email" placeholder="이메일"
+          class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-teal-400 transition" />
+        <select id="ctTopic"
+          class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-teal-400 transition">
+          <option value="">주제 선택</option>
+          <option>어원 문의</option>
+          <option>파트너십</option>
+          <option>콘텐츠 제안</option>
+          <option>기타</option>
+        </select>
+        <textarea id="ctMsg" rows="3" placeholder="메시지"
+          class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-teal-400 transition resize-none"></textarea>
+        <button onclick="sendContact()"
+          class="w-full py-2 rounded-xl text-sm font-bold text-white"
+          style="background:linear-gradient(135deg,var(--cyan),var(--emerald));">보내기</button>
+        <p id="ctMsg2" class="text-xs hidden"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="py-12 px-4 text-center relative z-10">
+  <div class="max-w-2xl mx-auto">
+    <div class="flex flex-wrap justify-center gap-2 mb-6">
+      <span class="pill" style="color:var(--teal);   border-color:var(--teal);">#handle</span>
+      <span class="pill" style="color:var(--cyan);   border-color:var(--cyan);">#kindle</span>
+      <span class="pill" style="color:var(--emerald);border-color:var(--emerald);">#fiddle</span>
+      <span class="pill" style="color:var(--lime);   border-color:var(--lime);">#doodle</span>
+      <span class="pill" style="color:var(--sky);    border-color:var(--sky);">#riddle</span>
+      <span class="pill" style="color:var(--gold);   border-color:var(--gold);">#영어접미사</span>
+    </div>
+    <p class="font-['Righteous'] text-3xl neon-teal mb-1">‑dle</p>
+    <p class="text-slate-500 text-sm mb-1">Doodle · Diddle · Dawdle</p>
+    <a href="https://dle.kr" target="_blank" class="text-slate-400 text-sm hover:text-white transition">dle.kr</a>
+    <p class="text-slate-600 text-xs mt-4">© 2025 dle.kr — 영어 접미사 ‑dle 탐구 플랫폼</p>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+/* ── 1. PARTICLES ── */
+(function(){
+  const c   = document.getElementById('particles-canvas');
+  const ctx = c.getContext('2d');
+  let W, H, pts = [];
+  const COLORS = ['#14b8a6','#06b6d4','#10b981','#84cc16','#38bdf8','#f59e0b'];
+  function resize(){ W = c.width = innerWidth; H = c.height = innerHeight; }
+  function init(){
+    pts = [];
+    for(let i=0;i<70;i++) pts.push({
+      x:  Math.random()*W, y:  Math.random()*H,
+      vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4,
+      r:  Math.random()*2+1,
+      col: COLORS[Math.floor(Math.random()*COLORS.length)]
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.col; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{ resize(); init(); });
+  resize(); init(); draw();
+})();
+
+/* ── 2. HERO METER ── */
+window.addEventListener('load', function(){
+  const TARGET = 17;
+  const fill   = document.getElementById('heroMeterFill');
+  const val    = document.getElementById('heroMeterVal');
+  let cur = 0;
+  const iv = setInterval(()=>{
+    cur++;
+    fill.style.width = (cur/20*100)+'%';
+    val.textContent  = cur;
+    if(cur >= TARGET) clearInterval(iv);
+  }, 80);
+});
+
+/* ── 3. COUNT-UP ── */
+function countUp(id, target, suffix, duration){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const step = target / (duration / 30);
+  let cur = 0;
+  const iv = setInterval(()=>{
+    cur = Math.min(cur + step, target);
+    el.textContent = Math.floor(cur).toLocaleString() + (suffix||'');
+    if(cur >= target) clearInterval(iv);
+  }, 30);
+}
+
+/* ── 4. SCROLL REVEAL + PROGRESS BARS + KPI ── */
+const revealObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('revealed');
+      e.target.querySelectorAll('.prog-fill[data-w]').forEach(bar=>{
+        bar.style.width = bar.dataset.w + '%';
+      });
+      revealObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=> revealObs.observe(el));
+
+const kpiObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      countUp('kpi1', 1400, '', 2000);
+      countUp('kpi2', 1700, '', 2000);
+      kpiObs.disconnect();
+    }
+  });
+},{threshold:0.3});
+const kpiEl = document.getElementById('kpi');
+if(kpiEl) kpiObs.observe(kpiEl);
+
+/* ── 5. ACCORDION ── */
+document.querySelectorAll('.faq-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const answer = btn.nextElementSibling;
+    const icon   = btn.querySelector('.faq-icon');
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-answer').forEach(a=> a.classList.remove('open'));
+    document.querySelectorAll('.faq-icon').forEach(i=> i.textContent='+');
+    if(!isOpen){ answer.classList.add('open'); icon.textContent='−'; }
+  });
+});
+
+/* ── 6. CAROUSEL ── */
+let carouselIdx = 0;
+const TOTAL_SLIDES = 5;
+(function initCarousel(){
+  const dots = document.getElementById('carouselDots');
+  for(let i=0;i<TOTAL_SLIDES;i++){
+    const d = document.createElement('div');
+    d.className = 'w-2 h-2 rounded-full transition-colors cursor-pointer';
+    d.style.background = i===0 ? 'var(--teal)' : 'rgba(255,255,255,0.25)';
+    d.onclick = ()=>{ carouselIdx=i; updateCarousel(); };
+    dots.appendChild(d);
+  }
+})();
+function updateCarousel(){
+  document.getElementById('carouselTrack').style.transform = `translateX(-${carouselIdx*100}%)`;
+  document.querySelectorAll('#carouselDots div').forEach((d,i)=>{
+    d.style.background = i===carouselIdx ? 'var(--teal)' : 'rgba(255,255,255,0.25)';
+  });
+}
+function moveCarousel(dir){
+  carouselIdx = (carouselIdx + dir + TOTAL_SLIDES) % TOTAL_SLIDES;
+  updateCarousel();
+}
+setInterval(()=>{ carouselIdx=(carouselIdx+1)%TOTAL_SLIDES; updateCarousel(); }, 4000);
+
+/* ── 7. MUSIC PLAYER ── */
+const tracks = [
+  { title:'Handle It',      artist:'dle.kr OST', dur:238 },
+  { title:'Kindle the Fire', artist:'dle.kr OST', dur:254 },
+  { title:'Doodle Dream',   artist:'dle.kr OST', dur:221 }
+];
+let curTrack=0, isPlaying=false, elapsed=0, playerIv=null;
+function fmt(s){ return Math.floor(s/60)+':'+(s%60<10?'0':'')+Math.floor(s%60); }
+function renderTracks(){
+  const list = document.getElementById('trackList');
+  list.innerHTML = '';
+  tracks.forEach((t,i)=>{
+    const d = document.createElement('div');
+    d.className = 'flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-white/5 transition';
+    d.innerHTML = `<span class="text-slate-500 text-xs w-4">${i+1}</span>
+      <div class="flex-1"><p class="text-sm font-medium ${i===curTrack?'text-white':'text-slate-400'}">${t.title}</p></div>
+      <span class="text-xs text-slate-500">${fmt(t.dur)}</span>`;
+    if(i===curTrack) d.style.background='rgba(20,184,166,0.12)';
+    d.onclick=()=>{ curTrack=i; elapsed=0; loadTrack(); if(!isPlaying) togglePlay(); };
+    list.appendChild(d);
+  });
+}
+function loadTrack(){
+  const t = tracks[curTrack];
+  document.getElementById('trackTitle').textContent  = t.title;
+  document.getElementById('trackArtist').textContent = t.artist;
+  document.getElementById('totalTime').textContent   = fmt(t.dur);
+  document.getElementById('currentTime').textContent = '0:00';
+  document.getElementById('musicProgress').style.width = '0%';
+  renderTracks();
+}
+function togglePlay(){
+  isPlaying = !isPlaying;
+  document.getElementById('playBtn').textContent = isPlaying ? '⏸' : '▶';
+  const vinyl = document.getElementById('vinyl');
+  if(isPlaying){
+    vinyl.classList.add('spinning');
+    playerIv = setInterval(()=>{
+      elapsed++;
+      const dur = tracks[curTrack].dur;
+      document.getElementById('currentTime').textContent = fmt(elapsed);
+      document.getElementById('musicProgress').style.width = (elapsed/dur*100)+'%';
+      if(elapsed >= dur){ elapsed=0; nextTrack(); }
+    },1000);
+  } else {
+    vinyl.classList.remove('spinning');
+    clearInterval(playerIv);
+  }
+}
+function nextTrack(){ clearInterval(playerIv); isPlaying=false; elapsed=0; curTrack=(curTrack+1)%tracks.length; loadTrack(); togglePlay(); }
+function prevTrack(){ clearInterval(playerIv); isPlaying=false; elapsed=0; curTrack=(curTrack-1+tracks.length)%tracks.length; loadTrack(); togglePlay(); }
+loadTrack();
+
+/* ── 8. NEWSLETTER ── */
+function subscribeNL(){
+  const v = document.getElementById('nlEmail').value.trim();
+  const m = document.getElementById('nlMsg');
+  m.classList.remove('hidden');
+  if(!v||!v.includes('@')){
+    m.textContent='올바른 이메일을 입력해주세요.'; m.style.color='#f87171';
+  } else {
+    m.textContent='구독해주셔서 감사합니다! 🛠️'; m.style.color='#4ade80';
+    document.getElementById('nlEmail').value='';
+  }
+}
+
+/* ── 9. CONTACT ── */
+function sendContact(){
+  const name  = document.getElementById('ctName').value.trim();
+  const email = document.getElementById('ctEmail').value.trim();
+  const msg   = document.getElementById('ctMsg').value.trim();
+  const out   = document.getElementById('ctMsg2');
+  out.classList.remove('hidden');
+  if(!name||!email||!msg){
+    out.textContent='모든 필드를 입력해주세요.'; out.style.color='#f87171';
+  } else if(!email.includes('@')){
+    out.textContent='올바른 이메일을 입력해주세요.'; out.style.color='#f87171';
+  } else {
+    out.textContent='메시지가 전송되었습니다! ✅'; out.style.color='#4ade80';
+    ['ctName','ctEmail','ctMsg'].forEach(id=> document.getElementById(id).value='');
+    document.getElementById('ctTopic').selectedIndex=0;
+  }
+}
+
+/* ── 10. SCROLL TO TOP ── */
+const topBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{
+  topBtn.style.display = scrollY > 400 ? 'flex' : 'none';
+});
+</script>
+</body>
+</html>
